@@ -1,0 +1,17 @@
+{
+  "name": "p5.localhost",
+  "version": "1.0.0",
+  "description": "This is the back end server for Project 5 of the Junior Web Developer path.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass ./scss/main.scss:./public/css/style.css --style compressed",
+    "sass:watch": "sass --watch ./scss/main.scss:./public/css/style.css --style expanded"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "sass": "^1.35.2"
+  }
+}

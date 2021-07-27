@@ -1,0 +1,39 @@
+/* Organisation de la méthodologie 7.1
+
+YES *********** 1. utils/ (abstract) : variables, fonctions, mixins et placeholders pour les extensions éventuelles
+NO ************ 2. vendors/ : feuilles de style externes comme Bootstrap
+YES *********** 3. base/ : fondations du site, normes applicables partout : police...
+YES *********** 4. components/ : blocs de BEM les plus indépendants, comme les boutons
+YES *********** 5. layouts/ : blocs de BEM réutilisables comme header des grandes mises en page ou footer (peuvent utiliser des composants pour générer le contenu)
+YES *********** 6. pages / : codes applicables qu'à des pages spécifiques, non réutilisées ailleurs
+NO ************ 7. themes/ : codes thématiques, styles de noël par exemple
+main.scss : contient les imports des autres feuilles de style
+
+*/
+
+@charset 'utf-8';// pour forcer l'encodage en cas de problème
+
+@import "./utils/extensions";
+@import "./utils/functions";
+@import "./utils/mixins";
+@import "./utils/placeholders";
+@import "./utils/variables";
+
+@import "./vendors/bootstrap";
+
+@import "./base/base";
+@import "./base/typography";
+
+@import "./components/buttons";
+@import "./components/loader";
+@import "./components/cards";
+@import "./components/icons";
+
+@import "./layouts/header";
+@import "./layouts/main";
+@import "./layouts/footer";
+
+@import "./pages/accueil";
+@import "./pages/produit";
+@import "./pages/panier";
+@import "./pages/confirmation-commande";
