@@ -8,9 +8,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
         <link rel="icon" href="favicon.png">
-        <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <title>Orinoco, votre place de marché spécialisée en produits vintage et faits à la main</title>
+
+        <title>Orinoco, votre place de marché spécialisée en produits design</title>
     </head>
     <body>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" class="icon-svg">
@@ -39,42 +38,100 @@
             <!-- HEADER -->
             <!-- <header class="d-flex flex-nowrap row justify-content-between align-items-center"> -->
             <header class="section-header d-flex flex-nowrap row justify-content-between align-items-center">
+                <!-- SI LE TEMPS, ALORS JS pour adapter le margin du main à la taille du header -->
                 <nav id="fixed-nav" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid justify-content-between">
-                        <a class="navbar-brand" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
-                        <div>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                                    <button class="btn btn-outline-primary" type="submit">Rechercher</button>
-                                </form>
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item"><a class="nav-link" href="#">Contactez-nous</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Mon compte</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Panier</a></li>
+                    <a class="navbar-brand container-fluid justify-content-between" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
+                        <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+                    </form>
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                <nav id="scrolling-nav" class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="#">
-                    <div class="collapse navbar-collapse container-fluid" id="navbarsExample04">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html" title="Aller sur la page d'accueil">Accueil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" title="Voir les ours en peluche faits à la main">Ours en peluche faits à la main</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" title="Voir les caméras vintage">Caméra vintage</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" title="Voir les meubles en chêne">Meubles en chêne</a></li>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-shopping-cart fa-2x"></i>
+                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
+                                </a>
+                            </li>
+
+<!-- TENTATIVE de panier dropdown -->
+
+                            <!-- <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="fas fa-shopping-cart"></span>
+                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-cart" role="menu">
+                                    <li>
+                                        <span class="item">
+                                          <span class="item-left">
+                                              <img src="http://lorempixel.com/50/50/" alt="" />
+                                              <span class="item-info">
+                                                  <span>Item name</span>
+                                                  <span>23$</span>
+                                              </span>
+                                          </span>
+                                          <span class="item-right">
+                                              <button class="btn btn-xs btn-danger pull-right">x</button>
+                                          </span>
+                                      </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                          <span class="item-left">
+                                              <img src="http://lorempixel.com/50/50/" alt="" />
+                                              <span class="item-info">
+                                                  <span>Item name</span>
+                                                  <span>23$</span>
+                                              </span>
+                                          </span>
+                                          <span class="item-right">
+                                              <button class="btn btn-xs btn-danger pull-right">x</button>
+                                          </span>
+                                      </span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a class="text-center" href="">View Cart</a></li>
+                                </ul>
+                            </li> -->
+<!-- FIN tentative panier dropdown -->
+
+
                         </ul>
                     </div>
                 </nav>
             </header>
             <!-- END HEADER -->
             <!-- MAIN -->
+            <!-- ATTENTION CA PASSE SOUS LE HEADER : A REGLER EN JS !!! ### -->
             <main>
                 <aside>
+                    <!-- <nav id="scrolling-nav" class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="#">
+                        <div class="collapse navbar-collapse container-fluid" id="navbarsExample04">
+                            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html" title="Aller sur la page d'accueil">Accueil</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les ours en peluche faits à la main">Ours en peluche faits à la main</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les caméras vintage">Caméra vintage</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les meubles en chêne">Meubles en chêne</a></li>
+                            </ul>
+                        </div>
+                    </nav> -->
                     <!-- Carrousel des articles à la une -->
                     <div class="bd-example">
                         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -85,25 +142,37 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Some representative placeholder content for the first slide.</p>
-                                </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Some representative placeholder content for the second slide.</p>
-                                </div>
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#777"></rect>
+                                        <text x="50%" y="50%" fill="#555" dy=".3em">First slide</text>
+                                    </svg>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>First slide label</h5>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Some representative placeholder content for the third slide.</p>
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#666"></rect>
+                                        <text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text>
+                                    </svg>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Second slide label</h5>
+                                        <p>Some representative placeholder content for the second slide.</p>
+                                    </div>
                                 </div>
+                                <div class="carousel-item">
+                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#555"></rect>
+                                        <text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text>
+                                    </svg>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Third slide label</h5>
+                                        <p>Some representative placeholder content for the third slide.</p>
+                                    </div>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -117,127 +186,108 @@
                         </div>
                     </div>
                 </aside>
-                <aside class="sloggan text-center bg-light">
-                    <h1>Orinoco : votre plus grand choix de produits du web !</h1>
-                </aside>
                 <!-- END OF CARROUSEL -->
-                <article class="articles container-fluid text-center" id="articles">
-                    <h2 class="pb-2 border-bottom">Consultez tous les articles</h2>
-                    <div>
-                        <ul class="d-flex flex-wrap justify-content-center">
-                            <li class="card">
-                                <div class="card-header">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_1.jpg" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
-                                        <h3 class="card-title">Titre de la première carte</h3>
-                                        <p class="card-text">Une ligne de texte dans notre première carte.</p>
-                                        <p class="card-text"><small class="text-muted">Ligne de texte supplémentaire</small></p>
-                                    </a>
-                                </div>
-                                <div class="card-footer"><button class="button" title="Ajouter au panier">Ajouter au panier</button></div>
-                            </li>                            <li class="card">
-                                <div class="card-header">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_2.jpg" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
-                                        <h3 class="card-title">Titre de la première carte</h3>
-                                        <p class="card-text">Une ligne de texte dans notre première carte.</p>
-                                        <p class="card-text"><small class="text-muted">Ligne de texte supplémentaire</small></p>
-                                    </a>
-                                </div>
-                                <div class="card-footer"><button class="button" title="Ajouter au panier">Ajouter au panier</button></div>
-                            </li>                            
-                            <li class="card">
-                                <div class="card-header">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_3.jpg" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
-                                        <h3 class="card-title">Titre de la première carte</h3>
-                                        <p class="card-text">Une ligne de texte dans notre première carte.</p>
-                                        <p class="card-text"><small class="text-muted">Ligne de texte supplémentaire</small></p>
-                                    </a>
-                                </div>
-                                <div class="card-footer"><button class="button" title="Ajouter au panier">Ajouter au panier</button></div>
-                            </li>                            <li class="card">
-                                <div class="card-header">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_4.jpg" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
-                                        <h3 class="card-title">Titre de la première carte</h3>
-                                        <p class="card-text">Une ligne de texte dans notre première carte.</p>
-                                        <p class="card-text"><small class="text-muted">Ligne de texte supplémentaire</small></p>
-                                    </a>
-                                </div>
-                                <div class="card-footer"><button class="button" title="Ajouter au panier">Ajouter au panier</button></div>
-                            </li>
-                            <li class="card">
-                                <div class="card-header">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_5.jpg" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
-                                        <h3 class="card-title">Titre de la première carte</h3>
-                                        <p class="card-text">Une ligne de texte dans notre première carte.</p>
-                                        <p class="card-text"><small class="text-muted">Ligne de texte supplémentaire</small></p>
-                                    </a>
-                                </div>
-                                <div class="card-footer"><button class="button" title="Ajouter au panier">Ajouter au panier</button></div>
-                            </li>
-                        </ul>
+                <div class="bg-dark text-secondary px-4 py-5 text-center">
+                    <div class="py-5">
+                        <h1 class="display-5 fw-bold text-white">Orinoco : votre plus grand choix de produits design !</h1>
+                        <div class="col-lg-6 mx-auto">
+                            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                                <button type="button" class="btn btn-outline-primary btn-lg px-4 me-sm-3 fw-bold" href="http://www.google.fr" target="blank">Contactez-nous !</button>
+                            </div>
+                        </div>
                     </div>
-                    <!-- BREADCRUMB -->
+                </div>
+                <article class="articles container-fluid text-center" id="articles">
+                    <h2 class="py-2 border-bottom">Consultez tous les articles de la catégorie ###</h2>
+                    <ul class="mt-5 mb-5 d-flex flex-wrap justify-content-center">
+                        <li class="card">
+                            <div class="inner-card">
+                                <img src="img/oak_1.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#">
+                                <h3 class="d-flex justify-content-center align-items-center mt-3 px-2">Tabouret design</h3>
+                                <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                                    <div class="px-2"><h4>200€</h4></div>
+                                    <span class="heart"><i class="fa fa-heart"></i></span>
+                                </div>
+                                <div class="px-2 mt-3 d-flex justify-content-between"><button class="btn btn-outline-primary px-3">Voir le produit</button><button class="btn btn-outline-primary px-3">Ajouter au panier</button></div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="inner-card">
+                                <img src="img/oak_2.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#">
+                                <h3 class="d-flex justify-content-center align-items-center mt-3 px-2">Grande table</h3>
+                                <!-- ATTENTION LE TITRE EST RESPONSIVE ET DEVRAIT PAS... QUAND IL EST LONG : "Grande table rectangulaire" ### -->
+                                <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                                    <div class="px-2"><h4>400€</h4></div>
+                                    <span class="heart"><i class="fa fa-heart"></i></span>
+                                </div>
+                                <div class="px-2 mt-3 d-flex justify-content-between"><button class="btn btn-outline-primary px-3">Voir le produit</button><button class="btn btn-outline-primary px-3">Ajouter au panier</button></div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="inner-card">
+                                <img src="img/oak_3.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#">
+                                <h3 class="d-flex justify-content-center align-items-center mt-3 px-2">Table extensible</h3>
+                                <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                                    <div class="px-2"><h4>500€</h4></div>
+                                    <span class="heart"><i class="fa fa-heart"></i></span>
+                                </div>
+                                <div class="px-2 mt-3 d-flex justify-content-between"><button class="btn btn-outline-primary px-3">Voir le produit</button><button class="btn btn-outline-primary px-3">Ajouter au panier</button></div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="inner-card">
+                                <img src="img/oak_4.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#">
+                                <h3 class="d-flex justify-content-center align-items-center mt-3 px-2">Poutre en bois exotique</h3>
+                                <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                                    <div class="px-2"><h4>50€</h4></div>
+                                    <span class="heart"><i class="fa fa-heart"></i></span>
+                                </div>
+                                <div class="px-2 mt-3 d-flex justify-content-between"><button class="btn btn-outline-primary px-3">Voir le produit</button><button class="btn btn-outline-primary px-3">Ajouter au panier</button></div>
+                            </div>
+                        </li>
+                        <li class="card">
+                            <div class="inner-card">
+                                <img src="img/oak_5.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#">
+                                <h3 class="d-flex justify-content-center align-items-center mt-3 px-2">Rocking chair vintage</h3>
+                                <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                                    <div class="px-2"><h4>150€</h4></div>
+                                    <span class="heart"><i class="fa fa-heart"></i></span>
+                                </div>
+                                <div class="px-2 mt-3 d-flex justify-content-between"><button class="btn btn-outline-primary px-3">Voir le produit</button><button class="btn btn-outline-primary px-3">Ajouter au panier</button></div>
+                            </div>
+                        </li>
+                    </ul>
                 </article>
                 <aside class="category text-center container-fluid">
                     <h2 class="pb-2 border-bottom">Nos catégories de produits</h2>
                     <div>
                         <ul class="d-flex flex-wrap text-center justify-content-center">
                             <li class="card">
-                                <div class="card-header">
+                                <div class="inner-card">
                                     <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/teddy_5.jpg" width=300 height=200 alt="#" title="#"/>
+                                        <img src="img/teddy_5.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
                                     </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
+                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
                                         <h3 class="card-title">Ours en peluche</h3>
                                     </a>
                                 </div>
                             </li>
                             <li class="card">
-                                <div class="card-header">
+                                <div class="inner-card">
                                     <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/vcam_2.jpg" width=300 height=200 alt="#" title="#"/>
+                                        <img src="img/vcam_2.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
                                     </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
+                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
                                         <h3 class="card-title">Caméra vintage</h3>
                                     </a>
                                 </div>
                             </li>
                             <li class="card">
-                                <div class="card-header">
+                                <div class="inner-card">
                                     <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_4.jpg" width=300 height=200 alt="#" title="#"/>
+                                        <img src="img/oak_4.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
                                     </a>
-                                </div>
-                                <div class="card-body">
-                                    <a class="restaurants__results__card__description" href="#" title="#">
+                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
                                         <h3 class="card-title">Meubles en chêne</h3>
                                     </a>
                                 </div>
@@ -307,6 +357,9 @@
             </footer>
             <!-- END FOOTER -->
         </div>
+        <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
         <!-- END BLOC PAGE -->
     </body>
 </html>

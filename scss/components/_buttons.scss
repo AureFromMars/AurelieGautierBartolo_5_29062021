@@ -1,0 +1,10 @@
+.btn-outline-info {
+    color: $primary;
+    border-color: $primary;
+
+    :hover{
+        color: #000;
+        background-color: $primary;
+        border-color: $primary;
+    }
+}
