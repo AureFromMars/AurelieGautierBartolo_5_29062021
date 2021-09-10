@@ -59,3 +59,26 @@ ul.dropdown-cart li .item-right{
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
 }
+
+// ANIMATED SVG CHECK MARK
+
+.wrapper {
+    width: 100px;
+    margin: 2em auto;
+}
+  
+.checkmark {
+    stroke: $secondary;
+    stroke-dashoffset: 745.74853515625;
+    stroke-dasharray: 745.74853515625;
+    animation: dash 5s ease-out forwards infinite;
+}
+  
+@keyframes dash {
+    0% {
+      stroke-dashoffset: 745.74853515625;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+}
