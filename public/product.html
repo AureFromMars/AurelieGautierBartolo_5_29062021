@@ -35,10 +35,7 @@
         <!-- BLOC PAGE -->
         <div id="bloc-page" class="#">
             <!-- HEADER -->
-            <!-- <header class="d-flex flex-nowrap row justify-content-between align-items-center"> -->
             <header class="section-header d-flex flex-nowrap row justify-content-between align-items-center">
-                <!-- SI LE TEMPS, ALORS JS pour adapter le margin du main à la taille du header -->
-                <!-- <nav id="fixed-nav" class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> -->
                 <nav id="fixed-nav" class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand container-fluid justify-content-between" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,79 +65,16 @@
                                     <span class="badge rounded-pill badge-notification bg-secondary">###</span>
                                 </a>
                             </li>
-
-<!-- TENTATIVE de panier dropdown -->
-
-                            <!-- <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <span class="fas fa-shopping-cart"></span>
-                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-cart" role="menu">
-                                    <li>
-                                        <span class="item">
-                                          <span class="item-left">
-                                              <img src="http://lorempixel.com/50/50/" alt="" />
-                                              <span class="item-info">
-                                                  <span>Item name</span>
-                                                  <span>23$</span>
-                                              </span>
-                                          </span>
-                                          <span class="item-right">
-                                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                                          </span>
-                                      </span>
-                                    </li>
-                                    <li>
-                                        <span class="item">
-                                          <span class="item-left">
-                                              <img src="http://lorempixel.com/50/50/" alt="" />
-                                              <span class="item-info">
-                                                  <span>Item name</span>
-                                                  <span>23$</span>
-                                              </span>
-                                          </span>
-                                          <span class="item-right">
-                                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                                          </span>
-                                      </span>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a class="text-center" href="">View Cart</a></li>
-                                </ul>
-                            </li> -->
-<!-- FIN tentative panier dropdown -->
-
-
                         </ul>
                     </div>
                 </nav>
             </header>
             <!-- END HEADER -->
             <!-- MAIN -->
-            <!-- ATTENTION CA PASSE SOUS LE HEADER : A REGLER EN JS !!! ### -->
             <main>
-                <aside>
-                    <!-- <nav id="scrolling-nav" class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="#">
-                        <div class="collapse navbar-collapse container-fluid" id="navbarsExample04">
-                            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html" title="Aller sur la page d'accueil">Accueil</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les ours en peluche faits à la main">Ours en peluche faits à la main</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les caméras vintage">Caméra vintage</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les meubles en chêne">Meubles en chêne</a></li>
-                            </ul>
-                        </div>
-                    </nav> -->
-                </aside>
                 <div class="bg-dark text-secondary px-4 py-5 text-center">
                     <div class="py-5">
                         <h1 class="display-5 fw-bold text-white">Orinoco : votre plus grand choix de produits design !</h1>
-                        <!-- <div class="col-lg-6 mx-auto">
-                            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                                <button type="button" class="btn btn-outline-primary btn-lg px-4 me-sm-3 fw-bold">Contactez-nous !</button>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <nav aria-label="breadcrumb" class="p-5">
@@ -149,141 +83,82 @@
                         <li class="breadcrumb-item active" aria-current="page">#Nom du produit</li>
                     </ol>
                 </nav>
-                <article class="articles container-fluid text-center" id="articles">
-                    <!--Section: Block Content-->
+                <article class="articles container-fluid text-center mb-5 d-flex justify-content-center" id="articles">
+                    <!--AFFICHAGE DU PRODUIT-->
                     <!-- https://mdbootstrap.com/previews/ecommerce-demo/examples/pages/basic/product.html -->
-                    <section class="mb-5 d-flex justify-content-center">
-                        <div class="row">
-                            <div class="col-md-6 mb-4 mb-md-0">
-                                <figure class="rounded z-depth-1 main-img">
-                                    <!-- <a href="img/oak_1.jpg"> -->
-                                        <img src="img/oak_1.jpg" class="img-fluid z-depth-1  rounded" id="img-product">
-                                    <!-- </a> -->
-                                </figure>
+                    <div class="row">
+                        <!-- <div class="col-md-6 mb-4 mb-md-0">
+                            <figure class="rounded z-depth-1 main-img">
+                                <img src="img/oak_1.jpg" class="img-fluid z-depth-1 rounded" id="img-product">
+                            </figure>
+                        </div> -->
+                        <figure class="col-md-6 mb-4 mb-md-0 rounded z-depth-1 main-img">
+                            <img id="productImage" class="img-fluid z-depth-1 rounded">
+                        </figure>
+                        <div class="col-md-6">
+                            <h2 id="productName"></h2>
+                            <div class="rating">
+                                <span><i class="fas fa-star fa-sm text-primary"></i></span>
+                                <span><i class="fas fa-star fa-sm text-primary"></i></span>
+                                <span><i class="fas fa-star fa-sm text-primary"></i></span>
+                                <span><i class="fas fa-star fa-sm text-primary"></i></span>
+                                <span><i class="far fa-star fa-sm text-primary"></i></span>
                             </div>
-                            <div class="col-md-6">
-                                <h2>Tabouret design</h2>
-                                <div class="rating">
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="far fa-star fa-sm text-primary"></i></span>
-                                </div>
-                                <p><span class="mr-1"><strong>150 €</strong></span></p>
-                                <p class="pt-1">Description synthétique de l'article</p>
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-borderless mb-0">
-                                        <tbody>
-                                            <tr>
-                                                <th class="pl-0 w-25" scope="row"><strong>Couleurs</strong></th>
-                                                <td>Chêne clair</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="pl-0 w-25" scope="row"><strong>Livraison</strong></th>
-                                                <td>France</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <hr>
-                                <div class="table-responsive mb-2">
-                                    <table class="table table-sm table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <td class="pl-0 pb-0 w-25">Quantité</td>
-                                                <td class="pb-0">Couleur du vernis</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-0">
-                                                    <div class="def-number-input number-input safari_only mb-0 d-flex flex-row">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fas fa-minus fa-sm text-primary"></i></button>
-                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fas fa-plus fa-sm text-primary"></i></button>
+                            <h3 id="productPrice" class="mr-1"></h3>
+                            <p id="productDescription" class="pt-1"></p>
+                            <hr>
+                            <!-- LE TABLEAU N'EST PAS CENTRE !!!! ########### -->
+                            <!-- <div class="table-responsive d-flex mb-2">
+                                <table class="table table-sm table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-0 pb-0 w-25">Quantité</td>
+                                            <td class="pb-0">Couleur du vernis</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-0">
+                                                <div class="def-number-input number-input safari_only mb-0 d-flex flex-row">
+                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fas fa-minus fa-sm text-primary"></i></button>
+                                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fas fa-plus fa-sm text-primary"></i></button>
+                                                </div>
+                                            </td>
+                                            <td class="dropdown">
+                                                <form class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="form-group">
+                                                        <label for="labelSelect">Choisir la couleur</label>
+                                                        <select class="form-control" id="labelSelect"></select>
                                                     </div>
-                                                </td>
-                                                <!-- <td>
-                                                    <div class="mt-1">
-                                                        <div class="form-check form-check-inline pl-0">
-                                                            <input type="radio" class="form-check-input" id="small" name="materialExampleRadios" checked>
-                                                            <label class="form-check-label small text-uppercase card-link-secondary" for="small">Small</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline pl-0">
-                                                            <input type="radio" class="form-check-input" id="medium" name="materialExampleRadios">
-                                                            <label class="form-check-label small text-uppercase card-link-secondary" for="medium">Medium</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline pl-0">
-                                                            <input type="radio" class="form-check-input" id="large" name="materialExampleRadios">
-                                                            <label class="form-check-label small text-uppercase card-link-secondary" for="large">Large</label>
-                                                        </div>
-                                                    </div>
-                                                </td> -->
-                                                <td class="dropdown">
-                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                                                      Choisir la couleur
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <li><a class="dropdown-item" href="#">Clair</a></li>
-                                                        <li><a class="dropdown-item" href="#">Moyen</a></li>
-                                                        <li><a class="dropdown-item" href="#">Foncé</a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
+                                <i class="fas fa-shopping-cart pr-2"></i>
+                                Ajouter au panier
+                            </button> -->
+                            <form>
+                                <div class="def-number-input number-input safari_only mb-0 d-flex flex-row">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fas fa-minus fa-sm text-primary"></i></button>
+                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fas fa-plus fa-sm text-primary"></i></button>
+                                </div>
+                                <div class="form-group">
+                                    <label for="labelSelect">Choisir la couleur</label>
+                                    <select class="form-control" id="labelSelect"></select>
                                 </div>
                                 <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
                                     <i class="fas fa-shopping-cart pr-2"></i>
                                     Ajouter au panier
                                 </button>
-                            </div>
+                            </form>
                         </div>
-                    </section>
-                    <!--Section: Block Content-->
-                    <!-- Classic tabs -->
-                    <section class="classic-tabs border rounded px-4 pt-1">
-                        <ul class="nav tabs-primary nav-justified" id="advancedTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active show" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Informations</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="advancedTabContent">
-                            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                <h3>Description du produit</h3>
-                                <div class="rating">
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="fas fa-star fa-sm text-primary"></i></span>
-                                    <span><i class="far fa-star fa-sm text-primary"></i></span>
-                                </div>
-                                <h4>150 €</h4>
-                                <p class="pt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.</p>
-                            </div>
-                            <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-                                <h3>Informations complémentaires</h3>
-                                <table class="table table-striped table-bordered mt-3">
-                                    <thead>
-                                        <tr>
-                                            <th scope="row" class="w-150 dark-grey-text h6">Poids</th>
-                                            <td><em>3 kg</em></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" class="w-150 dark-grey-text h6">Dimensions (L x l x h)</th>
-                                            <td><em>30 x 30 × 60 cm</em></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Classic tabs -->
+                    </div>
                 </article>
+                <!-- END AFFICHAGE DU PRODUIT -->
+                <!-- CATEGORIES DE PRODUITS -->
                 <aside class="category text-center container-fluid">
                     <h2 class="pb-2 border-bottom">Nos catégories de produits</h2>
                     <div>
@@ -321,6 +196,7 @@
                         </ul>
                     </div>
                 </aside>
+                <!-- END CATEGORIES DE PRODUITS -->
             </main>
             <!-- END MAIN -->
             <!-- FOOTER -->
@@ -383,9 +259,10 @@
             </footer>
             <!-- END FOOTER -->
         </div>
+        <!-- END BLOC PAGE -->
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../js/product.js"></script>
-        <!-- END BLOC PAGE -->
+        <script src="../public/js/furnitures.js"></script>
+        <script src="../public/js/product.js"></script>
     </body>
 </html>

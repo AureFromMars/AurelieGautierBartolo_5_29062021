@@ -58,3 +58,18 @@ let furnitures = [
       imageUrl: "oak_5.jpg"
     }
   ]
+
+// Variable pour LE produit unique de la page produit
+let furniture = {
+    varnish: [
+      "Tan",
+      "Chocolate",
+      "Black",
+      "White"
+    ],
+    "_id": "5be9cc611c9d440000c1421e",
+    name: "Cross Table",
+    price: 59900,
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageUrl: "oak_1.jpg"
+}
