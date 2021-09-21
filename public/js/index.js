@@ -1,5 +1,5 @@
 // Conception HTML de la carte du produit // A REFACTORISER SI LE TEMPS LE PERMET *****************************
-function htmlCards(productsCards, datas) {
+function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES datas ??????????????????????????????????????????
     /* <li>
         <div>
             <img></img>
@@ -102,9 +102,9 @@ cardsLoop();
 // }
 
 // récup des données // OK
-// création du panier --> localStorage
-// insertion du produit dans le panier
-// sauvegarde du panier dans localstorage
+// création du panier --> localStorage // OK
+// insertion du produit dans le panier // OK
+// sauvegarde du panier dans localstorage // OK
 // IDEM index et product.html
 // ensuite cart.html
 // API

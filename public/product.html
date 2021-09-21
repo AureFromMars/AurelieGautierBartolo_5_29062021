@@ -60,7 +60,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="cart.html">
                                     <i class="fas fa-shopping-cart fa-2x"></i>
                                     <span class="badge rounded-pill badge-notification bg-secondary">###</span>
                                 </a>
@@ -85,18 +85,12 @@
                 </nav>
                 <article class="articles container-fluid text-center mb-5 d-flex justify-content-center" id="articles">
                     <!--AFFICHAGE DU PRODUIT-->
-                    <!-- https://mdbootstrap.com/previews/ecommerce-demo/examples/pages/basic/product.html -->
                     <div class="row">
-                        <!-- <div class="col-md-6 mb-4 mb-md-0">
-                            <figure class="rounded z-depth-1 main-img">
-                                <img src="img/oak_1.jpg" class="img-fluid z-depth-1 rounded" id="img-product">
-                            </figure>
-                        </div> -->
                         <figure class="col-md-6 mb-4 mb-md-0 rounded z-depth-1 main-img">
-                            <img id="productImage" class="img-fluid z-depth-1 rounded">
+                            <img class="productImage img-fluid z-depth-1 rounded">
                         </figure>
                         <div class="col-md-6">
-                            <h2 id="productName"></h2>
+                            <h2 class="productName"></h2>
                             <div class="rating">
                                 <span><i class="fas fa-star fa-sm text-primary"></i></span>
                                 <span><i class="fas fa-star fa-sm text-primary"></i></span>
@@ -104,52 +98,19 @@
                                 <span><i class="fas fa-star fa-sm text-primary"></i></span>
                                 <span><i class="far fa-star fa-sm text-primary"></i></span>
                             </div>
-                            <h3 id="productPrice" class="mr-1"></h3>
-                            <p id="productDescription" class="pt-1"></p>
+                            <h3 class="productPrice mr-1"></h3>
+                            <p class="productDescription pt-1"></p>
                             <hr>
-                            <!-- LE TABLEAU N'EST PAS CENTRE !!!! ########### -->
-                            <!-- <div class="table-responsive d-flex mb-2">
-                                <table class="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td class="pl-0 pb-0 w-25">Quantité</td>
-                                            <td class="pb-0">Couleur du vernis</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0">
-                                                <div class="def-number-input number-input safari_only mb-0 d-flex flex-row">
-                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fas fa-minus fa-sm text-primary"></i></button>
-                                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fas fa-plus fa-sm text-primary"></i></button>
-                                                </div>
-                                            </td>
-                                            <td class="dropdown">
-                                                <form class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="form-group">
-                                                        <label for="labelSelect">Choisir la couleur</label>
-                                                        <select class="form-control" id="labelSelect"></select>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
-                                <i class="fas fa-shopping-cart pr-2"></i>
-                                Ajouter au panier
-                            </button> -->
-                            <form>
-                                <div class="def-number-input number-input safari_only mb-0 d-flex flex-row">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fas fa-minus fa-sm text-primary"></i></button>
-                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fas fa-plus fa-sm text-primary"></i></button>
+                            <form id="addToCartForm" method="post">
+                                <div class="form-group def-number-input number-input safari_only mb-0 d-flex flex-row">
+                                    <label for="quantitySelect">Choisir le quantité (max. 10)</label>
+                                    <input id="quantitySelect" name="quantitySelect" type="number" value="1" min="1" max="10">
                                 </div>
                                 <div class="form-group">
-                                    <label for="labelSelect">Choisir la couleur</label>
-                                    <select class="form-control" id="labelSelect"></select>
+                                    <label for="optionSelect">Choisir la couleur</label>
+                                    <select class="form-control" name="optionSelect" id="optionSelect"></select>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
+                                <button id="addToCart" type="submit" class="btn btn-primary">
                                     <i class="fas fa-shopping-cart pr-2"></i>
                                     Ajouter au panier
                                 </button>
@@ -260,9 +221,9 @@
             <!-- END FOOTER -->
         </div>
         <!-- END BLOC PAGE -->
+        <script src="js/product-datas.js"></script>
+        <script src="js/product.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../public/js/furnitures.js"></script>
-        <script src="../public/js/product.js"></script>
     </body>
 </html>

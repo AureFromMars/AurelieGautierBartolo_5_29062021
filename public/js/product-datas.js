@@ -1,3 +1,5 @@
+// RECUPERATION DES DONNEES DE L'API // A CHANGER POUR L'API ####################################
+
 let furnitures = [
     {
       varnish: [
