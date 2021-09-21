@@ -236,9 +236,19 @@ totalVAT.textContent = (Number(totalPrice.textContent) * 0.2).toFixed(2);
 const fullTotalPrice = document.getElementById('fullTotalPrice');
 fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
 
-/************************************** Confirmation de commande ***********************************************/
+/************************************** Créer bouton vider le panier ***********************************************/
+
+// ###############################################################################
+
+// Formulaire infos client ##########################################################
+
+/************************************** Go to confirmation de commande ***********************************************/
 
 // Créer un numéro de commande pour la page de confirmation de commande
 
 const confirmOrderButton = document.getElementById('confirmOrderButton');
 
+confirmOrderButton.addEventListener("click", (event)=>{
+    event.preventDefault(); // Prévient les défauts
+    window.location.href = 'confirm-order.html';
+});
