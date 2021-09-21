@@ -1,9 +1,15 @@
+const currencySymbol = " €";
+const currency = document.getElementsByClassName('currency');
+for ( let i = 0; i < currency.length; i++) {
+    currency[i].textContent = currencySymbol;
+};
+
 // Conception HTML de la carte du produit
 
 function htmlCartCards(storedProductCard, datas) {
 
     /*<li>
-        <div><img></div>
+        <div><a><img></a></div>
         <div>
             <div>
                 <div>
@@ -11,7 +17,7 @@ function htmlCartCards(storedProductCard, datas) {
                     <div><strong></strong><span></span></div>
                     <form>
                         <label><strong></strong></label>
-                        <input>
+                        <input></input>
                     </form>
                 </div>
             </div>
@@ -37,7 +43,7 @@ function htmlCartCards(storedProductCard, datas) {
     // aSeeProductCardButton
     const aSeeProductCardButton = document.createElement('a');
     divCardContainer.appendChild(aSeeProductCardButton);
-    aSeeProductCardButton.href = "product.html?id=" + datas._id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
+    aSeeProductCardButton.href = "product.html?id=" + datas.id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
     aSeeProductCardButton.target = "_blank";
 
     // imgCard
@@ -98,39 +104,85 @@ function htmlCartCards(storedProductCard, datas) {
     // strongProductQuantityCartSelect
     const strongProductQuantityCartSelect = document.createElement('strong');
     labelProductQuantityCartSelect.appendChild(strongProductQuantityCartSelect);
-    strongProductQuantityCartSelect.textContent = "Quantité (max. 10) : " + datas.quantity;
+    strongProductQuantityCartSelect.textContent = "Quantité (max. 10) : ";
+    strongProductQuantityCartSelect.className = "me-2";
 
     // inputProductQuantityCartSelect
-    const inputProductQuantityCartSelect = document.createElement('label');
+    const inputProductQuantityCartSelect = document.createElement('input');
     divProductContaintOptionsContainerBis.appendChild(inputProductQuantityCartSelect);
     inputProductQuantityCartSelect.id = 'productQuantityCartSelect';
     inputProductQuantityCartSelect.name = 'productQuantityCartSelect';
     inputProductQuantityCartSelect.type = 'number';
-    inputProductQuantityCartSelect.value = '1';
+    inputProductQuantityCartSelect.value = datas.quantity;
     inputProductQuantityCartSelect.min = '1';
     inputProductQuantityCartSelect.max = '10';
 
     // divProductSuppAndPriceContainer
     const divProductSuppAndPriceContainer = document.createElement('div');
     divProductContaintContainer.appendChild(divProductSuppAndPriceContainer);
-    divProductSuppAndPriceContainer.className = 'd-flex justify-content-between align-items-center';
+    divProductSuppAndPriceContainer.className = 'd-flex justify-content-between align-items-center m-2';
+
+    // divChangeQuantity
+    const divChangeQuantity = document.createElement('div');
+    divProductSuppAndPriceContainer.appendChild(divChangeQuantity);
+
+    // iChangeQuantity
+    const iChangeQuantity = document.createElement('i');
+    divChangeQuantity.appendChild(iChangeQuantity);
+    iChangeQuantity.className = 'fas fa-undo-alt me-2';
+
+    // aChangeQuantity // CREATE FUNCTION #####################################################################
+    const aChangeQuantity = document.createElement('a');
+    divChangeQuantity.appendChild(aChangeQuantity);
+    aChangeQuantity.href = '#!';
+    aChangeQuantity.type = 'button';
+    aChangeQuantity.className = 'card-link-secondary small text-uppercase mr-3';
+    aChangeQuantity.textContent = "Modifier la quantité";
+    const functionChangeQuantity = () => {
+        let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
+
+        for ( let i = 0; i < productCartStored.length; i++) {
+            if ((productCartStored[i].id === datas.id) && (productCartStored[i].varnish === datas.varnish)) {
+                productCartStored[i].quantity = inputProductQuantityCartSelect.value;
+                if (productCartStored[i].quantity > 10) {
+                    productCartStored[i].quantity = 10;
+                };
+                localStorage.setItem("productsArray", JSON.stringify(productCartStored));
+                console.log(productCartStored[i].quantity);
+                location.reload();// Recharger la page pour mettre à jour le prix
+            }
+        }
+    };
+    aChangeQuantity.onclick = functionChangeQuantity;
 
     // divProductSupp
     const divProductSupp = document.createElement('div');
     divProductSuppAndPriceContainer.appendChild(divProductSupp);
 
-    // aProductSupp // CREATE FUNCTION #####################################################################
+    // iProductSupp
+    const iProductSupp = document.createElement('i');
+    divProductSupp.appendChild(iProductSupp);
+    iProductSupp.className = 'fas fa-trash-alt me-2';
+
+    // aProductSupp
     const aProductSupp = document.createElement('a');
     divProductSupp.appendChild(aProductSupp);
-    divProductSupp.href = '#!';
-    divProductSupp.type = 'button';
-    divProductSupp.className = 'card-link-secondary small text-uppercase mr-3';
-    divProductSupp.textContent = " Supprimer du panier";
+    aProductSupp.href = '#!';
+    aProductSupp.type = 'button';
+    aProductSupp.className = 'card-link-secondary small text-uppercase mr-3';
+    aProductSupp.textContent = "Supprimer du panier";
+    const functionProductSupp = () => {
+        let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
-    // iProductSupp // HELP NE FONCTIONNE PAS ##############################################################
-    const iProductSupp = document.createElement('i');
-    aProductSupp.appendChild(iProductSupp);
-    iProductSupp.className = 'fas fa-trash-alt mr-1';
+        for ( let i = 0; i < productCartStored.length; i++) {
+            if ((productCartStored[i].id === datas.id) && (productCartStored[i].varnish === datas.varnish)) { // Récupérer mon objet
+                productCartStored.splice(i,1);//Supprimer l'élément du tableau
+                localStorage.setItem("productsArray", JSON.stringify(productCartStored)); // Remettre mon tableau modifié dans le localStorage
+                location.reload();// Recharger la page
+            }
+        }
+    };
+    aProductSupp.onclick = functionProductSupp;
 
     // pProductPrice
     const pProductPrice = document.createElement('p');
@@ -144,15 +196,49 @@ function htmlCartCards(storedProductCard, datas) {
     //strongProductPrice
     const strongProductPrice = document.createElement('strong');
     spanProductPrice.appendChild(strongProductPrice);
-    // let devidedPrice = datas.price / 100;
-    strongProductPrice.textContent = datas.price + "€";
+    strongProductPrice.textContent = (datas.quantity*datas.price) + currencySymbol;
+};
 
-}
-
-// Boucle de création des cartes HTML avec récup des produits de variable furnitures contenant mon tableau de produits
+// Récupération de mon tableau pour les instruction suivantes
 let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));
-console.log(productStoredinLocalStorage);
 
-for (let i = 0; i < productStoredinLocalStorage.length; i++) {
+// Compter le nombre d'articles dans le panier et créer les cartes de produits
+const numberOfProductsStored = document.getElementsByClassName('numberOfProductsStored')[0];
+
+if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Vérifier si mon tableau est null ou vide (après suppression produit)
+    numberOfProductsStored.textContent = "ne contient pas de produits";
+    document.getElementById("storedProductCard").innerHTML = "<h4><strong>Retournez à la page d'accueil pour découvrir l'ensemble de nos produits</strong></h4></ br><a href=\"index.html\"><i class=\"fas fa-5x fa-arrow-circle-left\"></i></a>";
+} else {
+    for (let i = 0; i < productStoredinLocalStorage.length; i++) {// Boucle de création des cartes HTML avec récup des produits de variable furnitures contenant mon tableau de produits
     htmlCartCards(storedProductCard, productStoredinLocalStorage[i]);
-}
+    };
+    if ( productStoredinLocalStorage.length === 1) {
+    numberOfProductsStored.textContent = "(1 produit)"
+    } else {
+        numberOfProductsStored.textContent = "(" + productStoredinLocalStorage.length + " différents produits)";    
+    };
+};
+
+/************************************** Totaux de mon panier ***********************************************/
+
+const totalPrice = document.getElementById('totalPrice');
+functionCalCulateTotalPrice = () => {
+    let calculatePrice = 0;
+    for (let i = 0; i < productStoredinLocalStorage.length; i++) {
+        calculatePrice += Number(productStoredinLocalStorage[i].price) * Number(productStoredinLocalStorage[i].quantity);
+    } return calculatePrice;
+};
+totalPrice.textContent = functionCalCulateTotalPrice().toFixed(2);
+
+const totalVAT = document.getElementById('totalVAT');
+totalVAT.textContent = (Number(totalPrice.textContent) * 0.2).toFixed(2);
+
+const fullTotalPrice = document.getElementById('fullTotalPrice');
+fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
+
+/************************************** Confirmation de commande ***********************************************/
+
+// Créer un numéro de commande pour la page de confirmation de commande
+
+const confirmOrderButton = document.getElementById('confirmOrderButton');
+

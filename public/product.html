@@ -80,7 +80,7 @@
                 <nav aria-label="breadcrumb" class="p-5">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">#Nom du produit</li>
+                        <li id="breadcrumbProductName" class="breadcrumb-item active" aria-current="page"></li>
                     </ol>
                 </nav>
                 <article class="articles container-fluid text-center mb-5 d-flex justify-content-center" id="articles">
@@ -105,15 +105,30 @@
                                 <div class="form-group def-number-input number-input safari_only mb-0 d-flex flex-row">
                                     <label for="quantitySelect">Choisir le quantité (max. 10)</label>
                                     <input id="quantitySelect" name="quantitySelect" type="number" value="1" min="1" max="10">
+                                    <span id="quantitySelectError"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="optionSelect">Choisir la couleur</label>
                                     <select class="form-control" name="optionSelect" id="optionSelect"></select>
                                 </div>
-                                <button id="addToCart" type="submit" class="btn btn-primary">
+                                <button id="addToCart" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
                                     <i class="fas fa-shopping-cart pr-2"></i>
                                     Ajouter au panier
                                 </button>
+                                <div class="modal fade" id="confirmAddToCartModal" tabindex="-1" aria-labelledby="confirmAddToCartModal" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="confirmAddToCartModal">Votre produit a bien été ajouté au panier !</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <button type="button" class="btn btn-secondary" onclick="window.location.href = 'cart.html'">Voir le panier</button>
+                                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Rester sur la page</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </form>
                         </div>
                     </div>
@@ -140,7 +155,7 @@
                                         <img src="img/vcam_2.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
                                     </a>
                                     <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
-                                        <h3 class="card-title">Caméra vintage</h3>
+                                        <h3 class="card-title">Caméras vintage</h3>
                                     </a>
                                 </div>
                             </li>
@@ -150,7 +165,7 @@
                                         <img src="img/oak_4.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
                                     </a>
                                     <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
-                                        <h3 class="card-title">Meubles en chêne</h3>
+                                        <h3 class="card-title">Meubles vintage</h3>
                                     </a>
                                 </div>
                             </li>

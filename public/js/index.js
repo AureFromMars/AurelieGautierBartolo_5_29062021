@@ -2,7 +2,7 @@
 function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES datas ??????????????????????????????????????????
     /* <li>
         <div>
-            <img></img>
+            <a><img></img></a>
             <h3></h3>
             <div>
                 <div><h4></h4></div>
@@ -22,9 +22,15 @@ function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES da
     liCard.appendChild(divCardContainer);
     divCardContainer.className = 'inner-card';
 
+    // aSeeProductImgLink
+    const aSeeProductImgLink = document.createElement('a');
+    divCardContainer.appendChild(aSeeProductImgLink);
+    aSeeProductImgLink.href = "product.html?id=" + datas._id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
+    aSeeProductImgLink.target = "_blank";
+
     // imgCard
     const imgCard = document.createElement('img');
-    divCardContainer.appendChild(imgCard);
+    aSeeProductImgLink.appendChild(imgCard);
     imgCard.setAttribute('src', "img/" + datas.imageUrl);
     imgCard.setAttribute('alt', "# " + datas.name);
     imgCard.setAttribute('title', "# " + datas.name);

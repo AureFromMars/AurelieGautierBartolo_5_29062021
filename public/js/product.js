@@ -7,6 +7,9 @@ const selectObjectById = furnitures.find( myFurniture => myFurniture._id === idP
 // Conception de la page du produit
 function htmlProductPage(_selectObjectById, datas) {
 
+    const breadcrumbProductName = document.getElementById('breadcrumbProductName');
+    breadcrumbProductName.textContent = datas.name;
+
     let devidedPrice = datas.price / 100;
 
     // Afficher l'image
@@ -35,22 +38,11 @@ function htmlProductPage(_selectObjectById, datas) {
         optionCreateOption.textContent = datas.varnish[i]; // Affichage du texte ciblé dans mon option
     }
 
-    // Envoyer le formulaire
+    // Evenenement au click du bouton
     const addToCart = document.getElementById('addToCart');
 
-    // Evenenement au click du bouton
     addToCart.addEventListener("click", (event)=>{
         event.preventDefault(); // Prévient les défauts
-
-        // Afficher une fenêtre de confirmation de mise au panier//*****************************REVENIR PLUS TARD CAR SANS PANIER RIEN ****************************/
-        // const addToCartForm = document.getElementById('addToCartForm'); // Récup de mon formulaire
-        // addToCartForm.action = window.confirm("Votre produit a bien été ajouté au panier !\nCliquez sur \"OK\" et consulter votre panier pour finaliser votre commande.");
-
-        if (window.confirm("Votre produit a bien été ajouté au panier !\nConsultez votre panier et finalisez votre commande.")) {
-            window.location.href = "cart.html";
-        }
-
-
 
         let quantity = addToCartForm.elements["quantitySelect"].value; // Récup la valeur quantity
         let optionVarnish = addToCartForm.elements["optionSelect"].value; // Récup la valeur optionVarnaish
@@ -76,7 +68,7 @@ function htmlProductPage(_selectObjectById, datas) {
         }
 
         // Vérifier si le panier est déjà existant dans le localStorage pour le récupérer
-        if(productStored === null) {// Si localStorage vide
+        if( productStored === null ) {// Si localStorage vide
             console.log("Aucun produit dans le localStorage");
             productStored = [];//Créer un tableau
             addProductToLocalStorage();
@@ -85,20 +77,20 @@ function htmlProductPage(_selectObjectById, datas) {
             console.log("Un produit est présent dans le localStorage");
             
             let productDoesntExists = true;
-            
+            // Boucle recherche dans la liste des produits, le produit identitque à modifier dans localStorage
             for ( let i = 0; i < productStored.length; i++) {
                 if ((productStored[i].id === myProductObject.id) && (productStored[i].varnish === myProductObject.varnish)) {
                     console.log("Ce produit existe déjà");
                     productDoesntExists = false;
                     productStored[i].quantity = Number(productStored[i].quantity) + Number(myProductObject.quantity);
                     if (productStored[i].quantity > 10) {
-                        productStored[i].quantity = 10
-                        // FAIRE UN MESSAGE A L'UTILILISATEUR !!!!!!
+                        productStored[i].quantity = 10;
+                        document.getElementById("quantitySelectError").innerHTML = "<span style='color: red;'>Attention, votre panier contient déjà " + productStored[i].quantity + " articles de ce produit !</span>";
                     };
                     localStorage.setItem("productsArray", JSON.stringify(productStored));
                 }
             }
-            if(productDoesntExists) {
+            if ( productDoesntExists ) {
                 console.log("Ce produit n'existe pas encore");
                 addProductToLocalStorage();
                 console.log(productStored);
@@ -108,9 +100,5 @@ function htmlProductPage(_selectObjectById, datas) {
 };
 
 // Afficher la page du produit
-function productDisplay() {
-    const productPage = document.getElementById('productPage');
-    htmlProductPage(productPage, selectObjectById);
-};
-productDisplay();
-
+const productPage = document.getElementById('productPage');
+htmlProductPage(productPage, selectObjectById);
