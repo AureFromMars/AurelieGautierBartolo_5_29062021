@@ -12,6 +12,11 @@
         <title>Orinoco, votre place de marché spécialisée en produits design</title>
     </head>
     <body>
+        <!-- LOADER -->
+        <div id="loader" class="d-flex justify-center align-items-center">
+            <div class="dot d-flex justify-center align-items-center"></div>
+        </div>
+        <!-- ICONES de la page -->
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" class="icon-svg">
             <symbol id="check" viewBox="0 0 16 16">
                 <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
@@ -45,15 +50,17 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                        <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+                    <form id="searchForm" class="d-flex">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
+                        <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
                     </form>
                     <div class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <!-- Bouton pour accéder à la future page de contact -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
                             </li>
+                            <!-- Bouton du menu de la page du compte utilisateur à créer utltérieurement -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                     <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
@@ -63,10 +70,11 @@
                                     <li><a class="dropdown-item" href="#">Déconnexion</a></li>
                                 </ul>
                             </li>
+                            <!-- Bouton pour accéder au panier cart.html -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="cart.html">
                                     <i class="fas fa-shopping-cart fa-2x"></i>
-                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
+                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
                                 </a>
                             </li>
                         </ul>
@@ -76,54 +84,16 @@
             <!-- END HEADER -->
             <!-- MAIN -->
             <main>
-                <!-- GROS PROBLEME SUR LES BOUTONS AU CLIC !!! ############################################### -->
+                <!-- GROS PROBLEME SUR LES BOUTONS AU CLIC !!! ##################################################################################################### -->
                 <div class="bg-dark text-secondary px-4 py-5 text-center">
                     <div class="py-5">
                         <h1 class="display-5 fw-bold text-white">Orinoco : votre plus grand choix de produits design !</h1>
                     </div>
                 </div>
                 <article class="articles container-fluid text-center" id="articles">
-                    <h2 class="py-2 border-bottom">Consultez tous les articles de la catégorie ###</h2>
+                    <h2 class="py-2 border-bottom">Consultez tous nos produits de meubles vintage</h2>
                     <ul id="productsCards" class="mt-5 mb-5 d-flex flex-wrap justify-content-center"></ul>
                 </article>
-                <!-- CATEGORIES DE PRODUITS -->
-                <aside class="category text-center container-fluid">
-                    <h2 class="pb-2 border-bottom">Nos catégories de produits</h2>
-                    <div>
-                        <ul class="d-flex flex-wrap text-center justify-content-center">
-                            <li class="card">
-                                <div class="inner-card">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/teddy_5.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
-                                        <h3 class="card-title">Ours en peluche</h3>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="card">
-                                <div class="inner-card">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/vcam_2.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
-                                        <h3 class="card-title">Caméras vintage</h3>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="card">
-                                <div class="inner-card">
-                                    <a class="articles__results__card__image" href="#" title="#">
-                                        <img src="img/oak_4.jpg" class="img-fluid rounded" width=300 height=200 alt="#" title="#"/>
-                                    </a>
-                                    <a class="d-flex justify-content-center align-items-center mt-3 px-2" href="#" title="#">
-                                        <h3 class="card-title">Meubles vintage</h3>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
                 <!-- END CATEGORIES DE PRODUITS -->
             </main>
             <!-- END MAIN -->
@@ -188,7 +158,7 @@
             <!-- END FOOTER -->
         </div>
         <!-- END BLOC PAGE -->
-        <script src="js/product-datas.js"></script>
+        <!-- <script src="js/api-access.js"></script> -->
         <script src="js/index.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -1,35 +1,29 @@
+// Envoyer la saisie de recherche au serveur au clic du bouton RECHERCHER
+const searchInput = document.getElementById('searchInput');
+searchButton.addEventListener("click", (event)=>{
+	event.preventDefault();// Prévient les défauts
+	if(searchInput.value === "") {// Si la recherche est vide
+	} else {
+		location.reload();// Recharger la page
+        window.location.href = 'index.html?search=' + searchInput.value;// Renvoyer à la page d'accueil et ajouter la saisie de recherche à l'URI
+	};
+});
+
+// Définir la devise et l'appliquer à chaque endroit où le prix est afficher
 const currencySymbol = " €";
 const currency = document.getElementsByClassName('currency');
 for ( let i = 0; i < currency.length; i++) {
     currency[i].textContent = currencySymbol;
 };
 
+// Fermer le loader quand l'API a répondu
+const hideLoader = () => {
+	const loader = document.getElementById('loader');
+	loader.className = 'd-none';
+};
+
 // Conception HTML de la carte du produit
-
 function htmlCartCards(storedProductCard, datas) {
-
-    /*<li>
-        <div><a><img></a></div>
-        <div>
-            <div>
-                <div>
-                    <h3></h3>
-                    <div><strong></strong><span></span></div>
-                    <form>
-                        <label><strong></strong></label>
-                        <input></input>
-                    </form>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <a><i></i></a>
-                </div>
-                <p><span><strong></strong></span></p>
-            </div>
-        </div>
-    </li>*/
-
     // li
     const liCard = document.createElement('li');
     storedProductCard.appendChild(liCard);
@@ -49,7 +43,7 @@ function htmlCartCards(storedProductCard, datas) {
     // imgCard
     const imgCard = document.createElement('img');
     aSeeProductCardButton.appendChild(imgCard);
-    imgCard.setAttribute('src', "img/" + datas.imageUrl);
+    imgCard.setAttribute('src', datas.imageUrl);
     imgCard.setAttribute('alt', "# " + datas.name);
     imgCard.setAttribute('title', "# " + datas.name);
     imgCard.width = "300";
@@ -131,7 +125,7 @@ function htmlCartCards(storedProductCard, datas) {
     divChangeQuantity.appendChild(iChangeQuantity);
     iChangeQuantity.className = 'fas fa-undo-alt me-2';
 
-    // aChangeQuantity // CREATE FUNCTION #####################################################################
+    // aChangeQuantity
     const aChangeQuantity = document.createElement('a');
     divChangeQuantity.appendChild(aChangeQuantity);
     aChangeQuantity.href = '#!';
@@ -199,56 +193,216 @@ function htmlCartCards(storedProductCard, datas) {
     strongProductPrice.textContent = (datas.quantity*datas.price) + currencySymbol;
 };
 
-// Récupération de mon tableau pour les instruction suivantes
-let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));
+// Compter le nombre d'articles dans le panier, créer les cartes de produits, les taux de la commande
 
-// Compter le nombre d'articles dans le panier et créer les cartes de produits
-const numberOfProductsStored = document.getElementsByClassName('numberOfProductsStored')[0];
+let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
+const numberOfProductsStored = document.getElementById('numberOfProductsStored');
+const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
 
-if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Vérifier si mon tableau est null ou vide (après suppression produit)
+if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
     numberOfProductsStored.textContent = "ne contient pas de produits";
-    document.getElementById("storedProductCard").innerHTML = "<h4><strong>Retournez à la page d'accueil pour découvrir l'ensemble de nos produits</strong></h4></ br><a href=\"index.html\"><i class=\"fas fa-5x fa-arrow-circle-left\"></i></a>";
-} else {
-    for (let i = 0; i < productStoredinLocalStorage.length; i++) {// Boucle de création des cartes HTML avec récup des produits de variable furnitures contenant mon tableau de produits
+    document.getElementById('cartIsEmpty').className = "row d-flex justify-content-center d-block m-5";
+    badgeOfProductsStored.textContent = "0";// Afficher zéro dans le bage du bouton panier
+    hideLoader();
+} else { // Si mon tableau localStorage contient des produits
+
+    // Afficher le contenu des produits et totaux de la commande
+    const totalCartContainer = document.getElementById('totalCartContainer');// Récupérer le div de contenu du panier
+    totalCartContainer.className = "row d-flex justify-content-center d-block m-3";
+
+    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;// Afficher la quantité de produits dans le bage du bouton panier
+
+    // Créer des cartes HTML avec récup des produits contenus dans mon tableau localStorage
+    for (let i = 0; i < productStoredinLocalStorage.length; i++) {
     htmlCartCards(storedProductCard, productStoredinLocalStorage[i]);
+    hideLoader();
     };
     if ( productStoredinLocalStorage.length === 1) {
-    numberOfProductsStored.textContent = "(1 produit)"
+    numberOfProductsStored.textContent = "(1 produit)";
     } else {
         numberOfProductsStored.textContent = "(" + productStoredinLocalStorage.length + " différents produits)";    
     };
+
+    // Bouton vider le panier et recharger la page
+    clearLocalStorage.addEventListener("click", (event)=>{
+        event.preventDefault(); // Prévient les défauts
+        localStorage.clear();
+        location.reload();
+    });
+
+    // Calculer les totaux de la commande
+    const totalPrice = document.getElementById('totalPrice');
+    functionCalCulateTotalPrice = () => {
+        let calculatePrice = 0;
+        for (let i = 0; i < productStoredinLocalStorage.length; i++) {
+            calculatePrice += Number(productStoredinLocalStorage[i].price) * Number(productStoredinLocalStorage[i].quantity);
+        } return calculatePrice;
+    };
+    totalPrice.textContent = functionCalCulateTotalPrice().toFixed(2);
+
+    const totalVAT = document.getElementById('totalVAT');
+    totalVAT.textContent = (Number(totalPrice.textContent) * 0.2).toFixed(2);
+
+    const fullTotalPrice = document.getElementById('fullTotalPrice');
+    fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
+
+    // Valider la commande avec le bouton de confirmation et rediriger vers confirm-order.html
+    const confirmOrderButton = document.getElementById('confirmOrderButton');
+
+    confirmOrderButton.addEventListener("click", (event)=>{
+        event.preventDefault(); // Prévient les défauts
+
+        // Transmettre les informations au serveur via API POST (1 objet avec 2 propriétés : contact et products)
+
+        // Récupérer les valeurs du formulaire pour les champs demandés par la mission
+        const firstNameFormInput = document.getElementById('firstNameFormInput');
+        const lastNameFormInput = document.getElementById('lastNameFormInput');
+        const addressFormInput = document.getElementById('addressFormInput');
+        const cityFormInput = document.getElementById('cityFormInput');
+        const emailFormInput = document.getElementById('emailFormInput');
+
+        // Validation du formulaire
+
+        let explainErrorMessage = "Ce formulaire est nécessaire pour valider votre commande.\nVos informations ne seront utilisées que pour nous permettre de vous livrer.\n\nMerci de corriger les éléments suivants :\n\n";
+        let errorMessage = "";
+
+        function checkFirstName() {
+            if (firstNameFormInput.value === ""){
+                errorMessage += "- vous n'avez pas renseigné votre Prénom.\n";
+                return false;
+            }
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(firstNameFormInput.value))) {// Mettre le regex à l'intérieur de /^ +$/
+                errorMessage += "- vous avez un caractère invalide dans votre Prénom.\n";
+                return false;
+            };
+            return true;
+        }; checkFirstName();
+
+        function checkLastName() {
+            if (lastNameFormInput.value === ""){
+                errorMessage += "- vous n'avez pas renseigné votre Nom.\n";
+                return false;
+            }
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(lastNameFormInput.value))) {
+                errorMessage += "- vous avez un caractère invalide dans votre Nom.\n";
+                return false;
+            };
+            return true;
+        }; checkLastName();
+
+        function checkAddress() {
+            if (addressFormInput.value === ""){
+                errorMessage += "- vous n'avez pas renseigné votre Adresse.\n";
+                return false;
+            }
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/.test(addressFormInput.value))) {
+                errorMessage += "- vous avez un caractère invalide dans votre Adresse.\n";
+                return false;
+            };
+            return true;
+        }; checkAddress();
+
+        function checkCity() {
+            if (cityFormInput.value === ""){
+                errorMessage += "- vous n'avez pas renseigné votre Ville.\n";
+                return false;
+            }
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(cityFormInput.value))) {
+                errorMessage += "- vous avez un caractère invalide dans votre Ville.\n";
+                return false;
+            };
+            return true;
+        }; checkCity();
+
+        function checkEmail() {
+            if (emailFormInput.value === ""){
+                errorMessage += "- vous n'avez pas renseigné votre Adresse Email.\n";
+                return false;
+            }
+            else if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailFormInput.value))) {
+                errorMessage += "- le format de votre Email n'est pas valide.\n"
+                return false;
+            };
+            return true;
+        }; checkEmail();
+
+        if (errorMessage != "") {
+            alert(explainErrorMessage + errorMessage);
+            return false;// Arrêter la fonction
+        };
+
+        // Définir mon objet contact à transmettre à l'API
+
+        let contact = {
+            firstName : firstNameFormInput.value,
+            lastName : lastNameFormInput.value,
+            address : addressFormInput.value,
+            city : cityFormInput.value,
+            email : emailFormInput.value,
+        };
+
+        let quantity = true // changer par true/false si on veut gérer ou non la quantité
+
+        // Récupérer les id du localStorage sous forme de tableau
+        let getProductsIdTable = () => {
+            let createProductIdTableFromLocalStorage = [];
+            for (let i = 0; i < productStoredinLocalStorage.length; i++) {// Consulter le tableau du localStorage produit par produit
+                // Récupérer autant d'id de produit que de quantité choisie :
+                if (quantity) {// Si on veut gérer la quantité
+                    for(let j = 0; j < productStoredinLocalStorage[i].quantity; j++) {// Itération sur la quantité
+                        createProductIdTableFromLocalStorage.push( productStoredinLocalStorage[i].id );// Ajouter des lignes supplémentaires dans le tableau d'id, avant le fetch ultérieur
+                    };
+                } else {// Ignorer la quantité
+                    createProductIdTableFromLocalStorage[i] = productStoredinLocalStorage[i].id;//Mon premier for d'origine
+                };
+            };
+            return(createProductIdTableFromLocalStorage);
+        };
+        let products = getProductsIdTable();
+        // Objet contenant les tableaux du formulaire et les id
+        const confirmOrderDatas = {
+            products,
+            contact,
+        };
+        console.log("Objet créé avec données de commande :", confirmOrderDatas);
+
+        // Envoyer les données de l'objet au serveur
+
+        let functionSendOrder = async () => {
+            try {
+                const postToOrderApiFolder = await fetch('http://localhost:3000/api/furniture/order', {
+                    method : 'POST',
+                    headers :{
+                        'Accept' : 'application/json',
+                        'Content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(confirmOrderDatas)
+                });
+                const content = await postToOrderApiFolder.json();
+                console.log("Données renvoyées par l'API :", content);
+
+                localStorage.setItem("orderId", JSON.stringify(content.orderId));
+
+            } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
+                alert(e)
+            };
+        };
+        functionSendOrder();
+
+        // Éviter que l'évènement courant ne se propage plus loin dans les phases de capture et de déploiement
+        event.stopPropagation();// Pas utile sur le submit d'un formulaire // Utile pour l'event d'un bouton au clic car submit en plus de l'event
+
+        // Rediriger vers la page de confirmation de commande
+        window.location.href = 'confirm-order.html';
+    });
 };
 
-/************************************** Totaux de mon panier ***********************************************/
+/** 
+PLAN DE TEST, pas TEST
 
-const totalPrice = document.getElementById('totalPrice');
-functionCalCulateTotalPrice = () => {
-    let calculatePrice = 0;
-    for (let i = 0; i < productStoredinLocalStorage.length; i++) {
-        calculatePrice += Number(productStoredinLocalStorage[i].price) * Number(productStoredinLocalStorage[i].quantity);
-    } return calculatePrice;
-};
-totalPrice.textContent = functionCalCulateTotalPrice().toFixed(2);
+excel avec les fichier et fonctions X (qui sert à quoi, résultat attendu), de la ligne Y, pour la tester quoi faire
+pour tester la fonction d'affichage des produits de la page d'accueil, il faut l'appeler et vérifier que les produits s'affichent bien dans la page, causes possibles : variable furniture vide, n'existe pas, le appendchild n'existe pas si modif HTML
+voir TDD
 
-const totalVAT = document.getElementById('totalVAT');
-totalVAT.textContent = (Number(totalPrice.textContent) * 0.2).toFixed(2);
 
-const fullTotalPrice = document.getElementById('fullTotalPrice');
-fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
-
-/************************************** Créer bouton vider le panier ***********************************************/
-
-// ###############################################################################
-
-// Formulaire infos client ##########################################################
-
-/************************************** Go to confirmation de commande ***********************************************/
-
-// Créer un numéro de commande pour la page de confirmation de commande
-
-const confirmOrderButton = document.getElementById('confirmOrderButton');
-
-confirmOrderButton.addEventListener("click", (event)=>{
-    event.preventDefault(); // Prévient les défauts
-    window.location.href = 'confirm-order.html';
-});
+*/

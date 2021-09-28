@@ -1,11 +1,55 @@
 // Récupération de l'id dans l'URL
 let idPage = document.location.search.substr(4);
 
-// Récupération des propriétés de l'objet en fonction de son id
-const selectObjectById = furnitures.find( myFurniture => myFurniture._id === idPage);
+// Fermer le loader quand l'API a répondu
+const hideLoader = () => {
+	const loader = document.getElementById('loader');
+	loader.className = 'd-none';
+};
+
+// Accéder à l'API
+let furnitures = [];// Déclaration de ma variable avec un tableau vide
+try {
+  fetch('http://localhost:3000/api/furniture/' + idPage)
+    .then(response => {// Accéder à l'API
+      console.log(response);
+      return response.json();
+    })
+    .then(data => {//Accéder à mon tableau de données
+      console.log(data);
+      furnitures = data;
+      // Afficher la page du produit
+      htmlProductPage(data);
+      hideLoader();
+    });
+} catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
+  alert(e)
+};
+
+// Envoyer la saisie de recherche au serveur au clic du bouton RECHERCHER
+const searchInput = document.getElementById('searchInput');
+searchButton.addEventListener("click", (event)=>{
+	event.preventDefault();// Prévient les défauts
+	if(searchInput.value === "") {// Si la recherche est vide
+	} else {
+		location.reload();// Recharger la page
+        window.location.href = 'index.html?search=' + searchInput.value;// Renvoyer à la page d'accueil et ajouter la saisie de recherche à l'URI
+	};
+});
+
+// Compter le nombre d'articles dans la panier et l'afficher dans le badge
+let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
+const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
+
+if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
+    badgeOfProductsStored.textContent = "0";
+} else { // Si mon tableau localStorage contient des produits
+    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;
+};
+console.log(productStoredinLocalStorage);
 
 // Conception de la page du produit
-function htmlProductPage(_selectObjectById, datas) {
+function htmlProductPage(datas) {
 
     const breadcrumbProductName = document.getElementById('breadcrumbProductName');
     breadcrumbProductName.textContent = datas.name;
@@ -13,9 +57,8 @@ function htmlProductPage(_selectObjectById, datas) {
     let devidedPrice = datas.price / 100;
 
     // Afficher l'image
-    // const productImage = document.getElementById('productImage');
     const productImage = document.getElementsByClassName('productImage')[0];
-    productImage.setAttribute('src', "img/" + datas.imageUrl);
+    productImage.setAttribute('src', datas.imageUrl);
     
     // Afficher le nom
     const productName = document.getElementsByClassName('productName')[0];
@@ -36,11 +79,10 @@ function htmlProductPage(_selectObjectById, datas) {
         let optionCreateOption = document.createElement('option'); // Création option
         optionSelect.appendChild(optionCreateOption); // Dépendance option au parent
         optionCreateOption.textContent = datas.varnish[i]; // Affichage du texte ciblé dans mon option
-    }
+    };
 
-    // Evenenement au click du bouton
+    // Evenenements au click du bouton
     const addToCart = document.getElementById('addToCart');
-
     addToCart.addEventListener("click", (event)=>{
         event.preventDefault(); // Prévient les défauts
 
@@ -58,14 +100,14 @@ function htmlProductPage(_selectObjectById, datas) {
             'id' : datas._id
         };
         
-        // Vérifier la présence d'objets dans localStorage / Outil : live server dans Visual Studio Code
+        // Vérifier la présence d'objets dans localStorage // Outil : live server dans Visual Studio Code
         let productStored = JSON.parse(localStorage.getItem("productsArray"));
 
         // Ajouter un produit au localStorage
         const addProductToLocalStorage = () => {
             productStored.push(myProductObject); //Ajouter un produit sélectionné
             localStorage.setItem("productsArray", JSON.stringify(productStored)); // Nommer et stringifier l'objet analysé pour JSON
-        }
+        };
 
         // Vérifier si le panier est déjà existant dans le localStorage pour le récupérer
         if( productStored === null ) {// Si localStorage vide
@@ -88,8 +130,8 @@ function htmlProductPage(_selectObjectById, datas) {
                         document.getElementById("quantitySelectError").innerHTML = "<span style='color: red;'>Attention, votre panier contient déjà " + productStored[i].quantity + " articles de ce produit !</span>";
                     };
                     localStorage.setItem("productsArray", JSON.stringify(productStored));
-                }
-            }
+                };
+            };
             if ( productDoesntExists ) {
                 console.log("Ce produit n'existe pas encore");
                 addProductToLocalStorage();
@@ -98,7 +140,3 @@ function htmlProductPage(_selectObjectById, datas) {
         };
     });
 };
-
-// Afficher la page du produit
-const productPage = document.getElementById('productPage');
-htmlProductPage(productPage, selectObjectById);

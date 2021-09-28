@@ -33,7 +33,7 @@ main.scss : contient les imports des autres feuilles de style
 @import "./layouts/main";
 @import "./layouts/footer";
 
-@import "./pages/accueil";
-@import "./pages/produit";
-@import "./pages/panier";
-@import "./pages/confirmation-commande";
+@import "./pages/index";
+@import "./pages/product";
+@import "./pages/cart";
+@import "./pages/confirm-order";

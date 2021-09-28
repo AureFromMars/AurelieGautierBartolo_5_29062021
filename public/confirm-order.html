@@ -45,8 +45,8 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                        <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
+                        <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
                     </form>
                     <div class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -65,54 +65,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#">
                                     <i class="fas fa-shopping-cart fa-2x"></i>
-                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
+                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
                                 </a>
                             </li>
-
-<!-- TENTATIVE de panier dropdown -->
-
-                            <!-- <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <span class="fas fa-shopping-cart"></span>
-                                    <span class="badge rounded-pill badge-notification bg-secondary">###</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-cart" role="menu">
-                                    <li>
-                                        <span class="item">
-                                          <span class="item-left">
-                                              <img src="http://lorempixel.com/50/50/" alt="" />
-                                              <span class="item-info">
-                                                  <span>Item name</span>
-                                                  <span>23$</span>
-                                              </span>
-                                          </span>
-                                          <span class="item-right">
-                                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                                          </span>
-                                      </span>
-                                    </li>
-                                    <li>
-                                        <span class="item">
-                                          <span class="item-left">
-                                              <img src="http://lorempixel.com/50/50/" alt="" />
-                                              <span class="item-info">
-                                                  <span>Item name</span>
-                                                  <span>23$</span>
-                                              </span>
-                                          </span>
-                                          <span class="item-right">
-                                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                                          </span>
-                                      </span>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a class="text-center" href="">View Cart</a></li>
-                                </ul>
-                            </li> -->
-<!-- FIN tentative panier dropdown -->
-
-
                         </ul>
                     </div>
                 </nav>
@@ -121,18 +76,6 @@
             <!-- MAIN -->
             <!-- ATTENTION CA PASSE SOUS LE HEADER : A REGLER EN JS !!! ### -->
             <main>
-                <aside>
-                    <!-- <nav id="scrolling-nav" class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="#">
-                        <div class="collapse navbar-collapse container-fluid" id="navbarsExample04">
-                            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html" title="Aller sur la page d'accueil">Accueil</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les ours en peluche faits à la main">Ours en peluche faits à la main</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les caméras vintage">Caméra vintage</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" title="Voir les meubles en chêne">Meubles en chêne</a></li>
-                            </ul>
-                        </div>
-                    </nav> -->
-                </aside>
                 <nav aria-label="breadcrumb" class="p-5">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
@@ -144,7 +87,7 @@
                     <div>
                         <br/><h3 class="text-primary"><strong>Merci,<br/>
                         votre commande a bien été enregistrée<br/>
-                        sous le numéro <span id="orderNumber"></span> !</strong></h3><br/>
+                        sous le numéro <span id="orderId"></span> !</strong></h3><br/>
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5" enable-background="new 0 0 98.5 98.5" xml:space="preserve">
                                 <path class="checkmark" fill="none" stroke-width="8" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"/>
@@ -221,6 +164,7 @@
             </footer>
             <!-- END FOOTER -->
         </div>
+        <!-- <script src="js/api-access.js"></script> -->
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

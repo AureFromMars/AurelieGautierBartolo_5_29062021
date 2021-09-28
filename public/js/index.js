@@ -1,17 +1,66 @@
-// Conception HTML de la carte du produit // A REFACTORISER SI LE TEMPS LE PERMET *****************************
-function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES datas ??????????????????????????????????????????
-    /* <li>
-        <div>
-            <a><img></img></a>
-            <h3></h3>
-            <div>
-                <div><h4></h4></div>
-                <span><i></i></span>
-            </div>
-            <div><a></a></div>
-        </div>
-    </li> */
+// Accéder à l'API
+let furnitures = [];// Déclaration de ma variable avec un tableau vide
 
+// Fermer le loader quand l'API a répondu
+const hideLoader = () => {
+	const loader = document.getElementById('loader');
+	loader.className = 'd-none';
+};
+
+// Vérifier la présence d'une recherche dans mon URI
+let searchURI = document.location.search.substr(8); // filter l'URI sans "?search="
+function filterFunction (arr, searchURI) {// Fonction qui appelle le tableau et la fonction de filtre précédente
+	return arr.filter(function (eachProduct) {// Retourner le tableau filtré par une fonction locale
+		return eachProduct.name.toLowerCase().indexOf(searchURI.toLowerCase()) !== -1; // Compare le nom de eachProduct avec searchURI // indexOf avec toLowerCase pour éviter d'être case sensitive
+	});
+};
+
+// Contacter l'API
+try {// Possibilité de ne faire qu'un seul then
+  	fetch('http://localhost:3000/api/furniture')
+		.then(response => {// Accéder à l'API
+			console.log(response);
+			return response.json();	
+		})
+		.then(data => {//Accéder à mon tableau de données
+			if (searchURI) {// Si l'URL comporte une saisie récupérée de la barre de recherche
+				console.log(searchURI);
+				furnitures = filterFunction(data, searchURI);
+			} else {
+				console.log(data);
+				furnitures = data;
+			};
+			cardsLoop(); // créer les cartes de produits en fonction de la saisie de recherche ou non
+			hideLoader(); // Cacher le loader lorsque les cartes de produits sont créées
+		})
+} catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
+  	alert(e)
+};
+
+// Envoyer la saisie de recherche à la soumission du formulaire (et non au clic du bouton !!!) ################################ à dupliquer
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+
+searchForm.addEventListener('submit', (event)=>{
+	event.preventDefault();// Prévient les défauts
+	if(searchInput.value === "") {// Si la recherche est vide
+	} else {
+		window.location.search = '?search=' + searchInput.value;// Ajouter la saisie de recherche à l'URI
+	};
+});
+
+// Compter le nombre d'articles dans la panier et l'afficher dans le badge
+let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
+const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
+
+if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
+    badgeOfProductsStored.textContent = "0";
+} else { // Si mon tableau localStorage contient des produits
+    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;
+};
+
+// Conception HTML de la carte du produit // A REFACTORISER en mettant l'HTML en dur directement après le li
+function htmlCards(productsCards, datas) {
     // li
     const liCard = document.createElement('li');
     productsCards.appendChild(liCard);
@@ -20,18 +69,19 @@ function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES da
     // divCardContainer
     const divCardContainer = document.createElement('div');
     liCard.appendChild(divCardContainer);
-    divCardContainer.className = 'inner-card';
+    divCardContainer.className = 'inner-card d-flex text-align-center align-items-center flex-column';
 
     // aSeeProductImgLink
     const aSeeProductImgLink = document.createElement('a');
     divCardContainer.appendChild(aSeeProductImgLink);
     aSeeProductImgLink.href = "product.html?id=" + datas._id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
     aSeeProductImgLink.target = "_blank";
+	divCardContainer.className = '';
 
     // imgCard
     const imgCard = document.createElement('img');
     aSeeProductImgLink.appendChild(imgCard);
-    imgCard.setAttribute('src', "img/" + datas.imageUrl);
+    imgCard.setAttribute('src', datas.imageUrl);
     imgCard.setAttribute('alt', "# " + datas.name);
     imgCard.setAttribute('title', "# " + datas.name);
     imgCard.width = "300";
@@ -42,37 +92,17 @@ function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES da
     const h3CardName = document.createElement('h3');
     divCardContainer.appendChild(h3CardName);
     h3CardName.textContent = datas.name;
-    h3CardName.className = 'd-flex justify-content-center align-items-center mt-3 px-2';
-
-    // divCardPriceHeart
-    const divCardPriceHeart = document.createElement('div');
-    divCardContainer.appendChild(divCardPriceHeart);
-    divCardPriceHeart.className = 'd-flex justify-content-between align-items-center mt-3 px-2';
-
-    // divH4CardPrice
-    const divH4CardPrice = document.createElement('div');
-    divCardPriceHeart.appendChild(divH4CardPrice);
-    divH4CardPrice.className = 'px-2';
+    h3CardName.className = 'mt-3 px-2';
 
     // h4CardPrice
     const h4CardPrice = document.createElement('h4');
-    divH4CardPrice.appendChild(h4CardPrice);
+    divCardContainer.appendChild(h4CardPrice);
     h4CardPrice.innerHTML = datas.price / 100 + " €";
-
-    // spanCardHeart
-    const spanCardHeart = document.createElement('span');
-    divCardPriceHeart.appendChild(spanCardHeart);
-    spanCardHeart.className = 'heart';
-
-    // iconCardHeart
-    const iconCardHeart = document.createElement('i');
-    spanCardHeart.appendChild(iconCardHeart);
-    iconCardHeart.className = 'fa fa-heart';
 
     // divCardButtons
     const divCardButtons = document.createElement('div');
     divCardContainer.appendChild(divCardButtons);
-    divCardButtons.className = 'px-2 mt-3 d-flex justify-content-between';
+    divCardButtons.className = 'px-2 mt-3';
 
     // aSeeProductCardButton
     const aSeeProductCardButton = document.createElement('a');
@@ -80,38 +110,14 @@ function htmlCards(productsCards, datas) { // COMMENT JE RECUPERE LES DONNEES da
     aSeeProductCardButton.className = 'btn btn-outline-primary px-3';
     aSeeProductCardButton.textContent = "Voir le produit";
     aSeeProductCardButton.setAttribute('role', 'button');
-    aSeeProductCardButton.href = "product.html?id=" + datas._id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
-    aSeeProductCardButton.target = "_blank";
-}
+    aSeeProductCardButton.href = 'product.html?id=' + datas._id;
+    aSeeProductCardButton.target = '_blank';
+};
 
 // Boucle de création des cartes HTML avec récup des produits de variable furnitures contenant mon tableau de produits
 function cardsLoop() {
     const productsCards = document.getElementById('productsCards');
-
     for (let i = 0; i < furnitures.length; i++) {
         htmlCards(productsCards, furnitures[i]);
-    }
-}
-cardsLoop();
-
-// Création des produits.. à utiliser pour l'API
-
-// class product {
-//     constructor(argVarnish, id, name, price, description, imageUrl) {
-//         this.varnish = argVarnish;
-//         this.id = id;
-//         this.name = name;
-//         this.description = description;
-//         this.price = price / 100 + "€";
-//         this.imageUrl = imageUrl;
-//     }
-// }
-
-// récup des données // OK
-// création du panier --> localStorage // OK
-// insertion du produit dans le panier // OK
-// sauvegarde du panier dans localstorage // OK
-// IDEM index et product.html
-// ensuite cart.html
-// API
-// confirmation à la fin pour créer une numéro de commande
+    };
+};

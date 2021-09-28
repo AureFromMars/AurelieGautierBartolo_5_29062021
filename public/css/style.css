@@ -10785,6 +10785,53 @@ ul {
   border-color: #8F5BFE;
 }
 
+#loader {
+  position: fixed;
+  height: 0%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  animation: 10s 0s;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#loader .dot {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  margin: 0.8em;
+  border-radius: 50%;
+  background: #8F5BFE;
+  animation-delay: 0.2s;
+}
+#loader .dot::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 2s ease-out infinite;
+}
+
+@keyframes wave {
+  50%, 75% {
+    transform: scale(2.5);
+  }
+  80%, 100% {
+    opacity: 0;
+  }
+}
+@keyframes loader-end {
+  0% {
+    opacity: 1;
+    height: 100%;
+  }
+}
 .container {
   height: 100vh;
 }
