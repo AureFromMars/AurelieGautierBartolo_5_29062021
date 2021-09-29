@@ -1,12 +1,6 @@
 // Accéder à l'API
 let furnitures = [];// Déclaration de ma variable avec un tableau vide
 
-// Fermer le loader quand l'API a répondu
-const hideLoader = () => {
-	const loader = document.getElementById('loader');
-	loader.className = 'd-none';
-};
-
 // Vérifier la présence d'une recherche dans mon URI
 let searchURI = document.location.search.substr(8); // filter l'URI sans "?search="
 function filterFunction (arr, searchURI) {// Fonction qui appelle le tableau et la fonction de filtre précédente
@@ -35,28 +29,6 @@ try {// Possibilité de ne faire qu'un seul then
 		})
 } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
   	alert(e)
-};
-
-// Envoyer la saisie de recherche à la soumission du formulaire (et non au clic du bouton !!!) ################################ à dupliquer
-const searchForm = document.getElementById('searchForm');
-const searchInput = document.getElementById('searchInput');
-
-searchForm.addEventListener('submit', (event)=>{
-	event.preventDefault();// Prévient les défauts
-	if(searchInput.value === "") {// Si la recherche est vide
-	} else {
-		window.location.search = '?search=' + searchInput.value;// Ajouter la saisie de recherche à l'URI
-	};
-});
-
-// Compter le nombre d'articles dans la panier et l'afficher dans le badge
-let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
-const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
-
-if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
-    badgeOfProductsStored.textContent = "0";
-} else { // Si mon tableau localStorage contient des produits
-    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;
 };
 
 // Conception HTML de la carte du produit // A REFACTORISER en mettant l'HTML en dur directement après le li
@@ -117,7 +89,11 @@ function htmlCards(productsCards, datas) {
 // Boucle de création des cartes HTML avec récup des produits de variable furnitures contenant mon tableau de produits
 function cardsLoop() {
     const productsCards = document.getElementById('productsCards');
-    for (let i = 0; i < furnitures.length; i++) {
-        htmlCards(productsCards, furnitures[i]);
+    if(furnitures && furnitures.length > 0) {
+        for (let i = 0; i < furnitures.length; i++) {
+            htmlCards(productsCards, furnitures[i]);
+        };
+    } else {
+        document.getElementById('searchIsEmpty').className = "row d-flex justify-content-center d-block m-5";
     };
 };

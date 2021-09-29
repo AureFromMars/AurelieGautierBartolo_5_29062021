@@ -45,7 +45,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <form class="d-flex">
+                    <form id="searchForm" class="d-flex">
                         <input  id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
                         <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
                     </form>
@@ -66,7 +66,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="cart.html">
                                     <i class="fas fa-shopping-cart fa-2x"></i>
-                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary">###</span>
+                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
                                 </a>
                             </li>
                         </ul>
@@ -115,10 +115,10 @@
                                     <label for="optionSelect">Choisir la couleur</label>
                                     <select class="form-control" name="optionSelect" id="optionSelect"></select>
                                 </div>
-                                <button id="addToCart" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
-                                    <i class="fas fa-shopping-cart pr-2"></i>
-                                    Ajouter au panier
-                                </button>
+                                    <button id="addToCart" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
+                                        <i class="fas fa-shopping-cart pr-2"></i>
+                                        Ajouter au panier
+                                    </button>
                                 <div class="modal fade" id="confirmAddToCartModal" tabindex="-1" aria-labelledby="confirmAddToCartModal" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -201,7 +201,7 @@
             <!-- END FOOTER -->
         </div>
         <!-- END BLOC PAGE -->
-        <!-- <script src="js/api-access.js"></script> -->
+        <script src="js/global.js"></script>
         <script src="js/product.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

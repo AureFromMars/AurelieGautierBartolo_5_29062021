@@ -44,7 +44,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <form class="d-flex">
+                    <form id="searchForm" class="d-flex">
                         <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
                         <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
                     </form>
@@ -93,8 +93,6 @@
                                 <path class="checkmark" fill="none" stroke-width="8" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"/>
                             </svg>
                         </div>
-                        <br/>
-                        D'ici quelques minutes, vous recevrez un email de confirmation avec le récapitulatif de votre commande.<br/>
                         <br/>
                         Nous vous remercions de votre confiance et d'avoir choisi Orinoco !<br/>
                         <br/>
@@ -164,11 +162,10 @@
             </footer>
             <!-- END FOOTER -->
         </div>
-        <!-- <script src="js/api-access.js"></script> -->
+        <script src="js/global.js"></script>
+        <script src="js/confirm-order.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="../public/js/confirm-order.js"></script>
         <!-- END BLOC PAGE -->
     </body>
 </html>

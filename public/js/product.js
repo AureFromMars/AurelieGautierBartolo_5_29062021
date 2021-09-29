@@ -1,52 +1,24 @@
 // Récupération de l'id dans l'URL
 let idPage = document.location.search.substr(4);
 
-// Fermer le loader quand l'API a répondu
-const hideLoader = () => {
-	const loader = document.getElementById('loader');
-	loader.className = 'd-none';
-};
-
 // Accéder à l'API
 let furnitures = [];// Déclaration de ma variable avec un tableau vide
 try {
-  fetch('http://localhost:3000/api/furniture/' + idPage)
-    .then(response => {// Accéder à l'API
-      console.log(response);
-      return response.json();
-    })
-    .then(data => {//Accéder à mon tableau de données
-      console.log(data);
-      furnitures = data;
-      // Afficher la page du produit
-      htmlProductPage(data);
-      hideLoader();
-    });
+    fetch('http://localhost:3000/api/furniture/' + idPage)
+        .then(response => {// Accéder à l'API
+        console.log(response);
+        return response.json();
+        })
+        .then(data => {//Accéder à mon tableau de données
+        console.log(data);
+        furnitures = data;
+        // Afficher la page du produit
+        htmlProductPage(data);
+        hideLoader();
+        });
 } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
-  alert(e)
+    alert(e)
 };
-
-// Envoyer la saisie de recherche au serveur au clic du bouton RECHERCHER
-const searchInput = document.getElementById('searchInput');
-searchButton.addEventListener("click", (event)=>{
-	event.preventDefault();// Prévient les défauts
-	if(searchInput.value === "") {// Si la recherche est vide
-	} else {
-		location.reload();// Recharger la page
-        window.location.href = 'index.html?search=' + searchInput.value;// Renvoyer à la page d'accueil et ajouter la saisie de recherche à l'URI
-	};
-});
-
-// Compter le nombre d'articles dans la panier et l'afficher dans le badge
-let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
-const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
-
-if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
-    badgeOfProductsStored.textContent = "0";
-} else { // Si mon tableau localStorage contient des produits
-    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;
-};
-console.log(productStoredinLocalStorage);
 
 // Conception de la page du produit
 function htmlProductPage(datas) {
@@ -83,11 +55,11 @@ function htmlProductPage(datas) {
 
     // Evenenements au click du bouton
     const addToCart = document.getElementById('addToCart');
-    addToCart.addEventListener("click", (event)=>{
+    addToCart.addEventListener('click', (event)=>{
         event.preventDefault(); // Prévient les défauts
 
-        let quantity = addToCartForm.elements["quantitySelect"].value; // Récup la valeur quantity
-        let optionVarnish = addToCartForm.elements["optionSelect"].value; // Récup la valeur optionVarnaish
+        let quantity = addToCartForm.elements['quantitySelect'].value; // Récup la valeur quantity
+        let optionVarnish = addToCartForm.elements['optionSelect'].value; // Récup la valeur optionVarnaish
 
         /************************ Créer des objets dans localStorage ************************/
 
@@ -101,12 +73,12 @@ function htmlProductPage(datas) {
         };
         
         // Vérifier la présence d'objets dans localStorage // Outil : live server dans Visual Studio Code
-        let productStored = JSON.parse(localStorage.getItem("productsArray"));
+        let productStored = JSON.parse(localStorage.getItem('productsArray'));
 
         // Ajouter un produit au localStorage
         const addProductToLocalStorage = () => {
             productStored.push(myProductObject); //Ajouter un produit sélectionné
-            localStorage.setItem("productsArray", JSON.stringify(productStored)); // Nommer et stringifier l'objet analysé pour JSON
+            localStorage.setItem('productsArray', JSON.stringify(productStored)); // Nommer et stringifier l'objet analysé pour JSON
         };
 
         // Vérifier si le panier est déjà existant dans le localStorage pour le récupérer

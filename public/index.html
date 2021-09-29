@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="#" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
@@ -93,6 +92,10 @@
                 <article class="articles container-fluid text-center" id="articles">
                     <h2 class="py-2 border-bottom">Consultez tous nos produits de meubles vintage</h2>
                     <ul id="productsCards" class="mt-5 mb-5 d-flex flex-wrap justify-content-center"></ul>
+                    <div id="searchIsEmpty" class="d-none">
+                        <h4><strong>Il n'y a aucun produit associé à votre recherche, revenez à l'accueil de la page pour voir tous nos produits !</strong></h4><br />
+                        <a href="index.html"><i class="fas fa-5x fa-arrow-circle-left"></i></a>
+                    </div>
                 </article>
                 <!-- END CATEGORIES DE PRODUITS -->
             </main>
@@ -159,10 +162,9 @@
         </div>
         <!-- END BLOC PAGE -->
         <!-- <script src="js/api-access.js"></script> -->
+        <script src="js/global.js"></script>
         <script src="js/index.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
-
     </body>
 </html>

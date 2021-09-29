@@ -10785,6 +10785,17 @@ ul {
   border-color: #8F5BFE;
 }
 
+.has-error {
+  border-color: #E68A0A;
+}
+
+.form-control:focus {
+  box-shadow: #8F5BFE;
+}
+.form-control:invalid {
+  border-color: #E68A0A;
+}
+
 #loader {
   position: fixed;
   height: 0%;

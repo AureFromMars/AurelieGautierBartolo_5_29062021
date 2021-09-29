@@ -1,25 +1,8 @@
-// Envoyer la saisie de recherche au serveur au clic du bouton RECHERCHER
-const searchInput = document.getElementById('searchInput');
-searchButton.addEventListener("click", (event)=>{
-	event.preventDefault();// Prévient les défauts
-	if(searchInput.value === "") {// Si la recherche est vide
-	} else {
-		location.reload();// Recharger la page
-        window.location.href = 'index.html?search=' + searchInput.value;// Renvoyer à la page d'accueil et ajouter la saisie de recherche à l'URI
-	};
-});
-
 // Définir la devise et l'appliquer à chaque endroit où le prix est afficher
 const currencySymbol = " €";
 const currency = document.getElementsByClassName('currency');
 for ( let i = 0; i < currency.length; i++) {
     currency[i].textContent = currencySymbol;
-};
-
-// Fermer le loader quand l'API a répondu
-const hideLoader = () => {
-	const loader = document.getElementById('loader');
-	loader.className = 'd-none';
 };
 
 // Conception HTML de la carte du produit
@@ -195,22 +178,17 @@ function htmlCartCards(storedProductCard, datas) {
 
 // Compter le nombre d'articles dans le panier, créer les cartes de produits, les taux de la commande
 
-let productStoredinLocalStorage = JSON.parse(localStorage.getItem("productsArray"));// Récupération de mon tableau pour les instructions suivantes
 const numberOfProductsStored = document.getElementById('numberOfProductsStored');
-const badgeOfProductsStored = document.getElementsByClassName('badgeOfProductsStored')[0];
 
 if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length === 0 ) {// Si mon tableau localStorage est null ou vide (après suppression produit)
     numberOfProductsStored.textContent = "ne contient pas de produits";
     document.getElementById('cartIsEmpty').className = "row d-flex justify-content-center d-block m-5";
-    badgeOfProductsStored.textContent = "0";// Afficher zéro dans le bage du bouton panier
     hideLoader();
 } else { // Si mon tableau localStorage contient des produits
 
     // Afficher le contenu des produits et totaux de la commande
     const totalCartContainer = document.getElementById('totalCartContainer');// Récupérer le div de contenu du panier
     totalCartContainer.className = "row d-flex justify-content-center d-block m-3";
-
-    badgeOfProductsStored.textContent = productStoredinLocalStorage.length;// Afficher la quantité de produits dans le bage du bouton panier
 
     // Créer des cartes HTML avec récup des produits contenus dans mon tableau localStorage
     for (let i = 0; i < productStoredinLocalStorage.length; i++) {
@@ -226,7 +204,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
     // Bouton vider le panier et recharger la page
     clearLocalStorage.addEventListener("click", (event)=>{
         event.preventDefault(); // Prévient les défauts
-        localStorage.clear();
+        localStorage.removeItem('productsArray');
         location.reload();
     });
 
@@ -247,9 +225,9 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
     fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
 
     // Valider la commande avec le bouton de confirmation et rediriger vers confirm-order.html
-    const confirmOrderButton = document.getElementById('confirmOrderButton');
+    const customerInformationsForm = document.getElementById('customerInformationsForm');
 
-    confirmOrderButton.addEventListener("click", (event)=>{
+    customerInformationsForm.addEventListener('submit', (event)=>{
         event.preventDefault(); // Prévient les défauts
 
         // Transmettre les informations au serveur via API POST (1 objet avec 2 propriétés : contact et products)
@@ -332,7 +310,6 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         };
 
         // Définir mon objet contact à transmettre à l'API
-
         let contact = {
             firstName : firstNameFormInput.value,
             lastName : lastNameFormInput.value,
@@ -341,9 +318,15 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
             email : emailFormInput.value,
         };
 
-        let quantity = true // changer par true/false si on veut gérer ou non la quantité
+        // Envoyer mon objet contact dans le localStorage, en cas de besoin ultérieur
+        const addContactToLocalStorage = () => {
+            localStorage.setItem('contact', JSON.stringify(contact)); // Nommer et stringifier l'objet analysé pour JSON
+        };
+        addContactToLocalStorage();
 
         // Récupérer les id du localStorage sous forme de tableau
+        let quantity = true // changer par true/false si on veut gérer ou non la quantité
+
         let getProductsIdTable = () => {
             let createProductIdTableFromLocalStorage = [];
             for (let i = 0; i < productStoredinLocalStorage.length; i++) {// Consulter le tableau du localStorage produit par produit
@@ -367,7 +350,6 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         console.log("Objet créé avec données de commande :", confirmOrderDatas);
 
         // Envoyer les données de l'objet au serveur
-
         let functionSendOrder = async () => {
             try {
                 const postToOrderApiFolder = await fetch('http://localhost:3000/api/furniture/order', {
@@ -381,7 +363,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 const content = await postToOrderApiFolder.json();
                 console.log("Données renvoyées par l'API :", content);
 
-                localStorage.setItem("orderId", JSON.stringify(content.orderId));
+                localStorage.setItem('orderId', JSON.stringify(content.orderId));
 
             } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
                 alert(e)
@@ -390,7 +372,11 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         functionSendOrder();
 
         // Éviter que l'évènement courant ne se propage plus loin dans les phases de capture et de déploiement
-        event.stopPropagation();// Pas utile sur le submit d'un formulaire // Utile pour l'event d'un bouton au clic car submit en plus de l'event
+        // event.stopPropagation();// Pas utile sur le submit d'un formulaire // Utile pour l'event d'un bouton au clic car submit en plus de l'event
+
+        // Vider le panier, mais conserver les données client et numéro de commande
+
+        localStorage.removeItem('productsArray');
 
         // Rediriger vers la page de confirmation de commande
         window.location.href = 'confirm-order.html';
@@ -403,6 +389,5 @@ PLAN DE TEST, pas TEST
 excel avec les fichier et fonctions X (qui sert à quoi, résultat attendu), de la ligne Y, pour la tester quoi faire
 pour tester la fonction d'affichage des produits de la page d'accueil, il faut l'appeler et vérifier que les produits s'affichent bien dans la page, causes possibles : variable furniture vide, n'existe pas, le appendchild n'existe pas si modif HTML
 voir TDD
-
 
 */

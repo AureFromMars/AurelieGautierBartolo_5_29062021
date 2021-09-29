@@ -45,7 +45,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <form class="d-flex">
+                    <form id="searchForm" class="d-flex">
                         <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
                         <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
                     </form>
@@ -91,24 +91,24 @@
                 <article class="d-flex justify-content-center flex-column articles container-fluid text-center" id="articles">
                     <h2 class="py-2 border-bottom">Votre panier <span id="numberOfProductsStored"></span></h2>
                     <!--Grid row-->
+                    <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Attention, passez votre commande au plus vite, car les articles peuvent ne plus être disponibles.</p>
                     <div id="cartIsEmpty" class="d-none">
                         <h4><strong>Retournez à la page d'accueil pour découvrir l'ensemble de nos produits</strong></h4><br />
                         <a href="index.html"><i class="fas fa-5x fa-arrow-circle-left"></i></a>
                     </div>
                     <div id="totalCartContainer" class="d-none">
                         <!--Grid column-->
-                        <div class="m-3 col-lg-8">
+                        <div class="mb-3">
                             <ul id="storedProductCard"></ul>
                             <button id="clearLocalStorage" type="button" class="btn btn-primary btn-block">Vider le panier</button>
-                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Attention, passez votre commande au plus vite, car les articles peuvent ne plus être disponibles.</p>
                             <!-- Card -->
-                            <div class="mb-3">
-                                <div class="pt-4">
-                                    <h4 class="mb-4">Moyens de paiement</h4>
-                                    <hr class="mt-1">
-                                    <img class="mr-2" width="45px" src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa">
-                                    <img class="mr-2" width="45px" src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard">
-                                    <img class="mr-2" width="45px" src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png" alt="PayPal acceptance mark">
+                            <div class="pt-4 text-center">
+                                <h4 class="mb-4">Moyens de paiement</h4>
+                                <hr class="mt-1">
+                                <div class="pt-4 d-flex flex-row flex-wrap justify-content-evenly m-auto">
+                                    <div><i class="fab fa-cc-visa mr-1 fa-3x"></i></div><!-- METTRE DES AL ET TITLE SUR MES IMAGES ###########################################################-->
+                                    <div><i class="fab fa-cc-mastercard mr-1 fa-3x"></i></div>
+                                    <div><i class="fab fa-paypal mr-1 fa-3x"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -149,52 +149,43 @@
                                     <div class="d-flex flex-column justify-content-center text-center">
                                         <div class="d-flex flex-row justify-content-evenly flex-wrap">
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="firstNameFormInput">Prénom</label><!-- pourquoi l'input est bleuté ???????????????????????????????????? -->
-                                                <input id="firstNameFormInput" name="firstNameFormInput" class="order-form-input" placeholder="Prénom" required />
+                                                <label class="order-form-label" for="firstNameFormInput">Prénom*</label><!-- pourquoi l'input est bleuté ???????????????????????????????????? -->
+                                                <input id="firstNameFormInput" name="firstNameFormInput" class="order-form-input form-control .has-error" placeholder="Prénom" required />
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="lastNameFormInput">Nom</label>
-                                                <input id="lastNameFormInput" name="lastNameFormInput" class="order-form-input" placeholder="Nom" required />
+                                                <label class="order-form-label" for="lastNameFormInput">Nom*</label>
+                                                <input id="lastNameFormInput" name="lastNameFormInput" class="order-form-input form-control" placeholder="Nom" required />
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row justify-content-evenly flex-wrap">
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="addressFormInput">Adresse</label>
-                                                <input id="addressFormInput" name="addressFormInput" class="order-form-input" placeholder="Adresse" required />
+                                                <label class="order-form-label" for="addressFormInput">Adresse*</label>
+                                                <input id="addressFormInput" name="addressFormInput" class="order-form-input form-control" placeholder="Adresse" required />
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="postalCodeFormInput">Code Postal</label>
-                                                <input id="postalCodeFormInput" name="postalCodeFormInput" class="order-form-input" placeholder="Code Postal" required />
+                                                <label class="order-form-label" for="postalCodeFormInput">Code Postal*</label>
+                                                <input id="postalCodeFormInput" name="postalCodeFormInput" class="order-form-input form-control" placeholder="Code Postal" required />
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row justify-content-evenly flex-wrap">
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="cityFormInput">Ville</label>
-                                                <input id="cityFormInput" name="cityFormInput" class="order-form-input" placeholder="Ville" required />
+                                                <label class="order-form-label" for="cityFormInput">Ville*</label>
+                                                <input id="cityFormInput" name="cityFormInput" class="order-form-input form-control" placeholder="Ville" required />
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="countryFormInput">Pays</label>
-                                                <input id="countryFormInput" name="countryFormInput" class="order-form-input" placeholder="Pays">
+                                                <label class="order-form-label" for="phone2FormInput">Téléphone 1</label>
+                                                <input id="phone1FormInput" name="phone1FormInput" class="order-form-input form-control" placeholder="Téléphone 1">
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-row justify-content-evenly flex-wrap">
-                                            <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="phone1FormInput">Téléphone 1</label>
-                                                <input id="phone1FormInput" name="phone1FormInput" class="order-form-input" placeholder="Téléphone 1">
+                                        <div class="d-flex flex-column justify-content-center m-auto">
+                                            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                                                <label for="emailFormInput" class="form-label">Email*</label>
+                                                <input type="email" id="emailFormInput" class="form-control" name="emailFormInput" aria-describedby="emailHelp" placeholder="Saisissez votre email" required />
                                             </div>
-                                            <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="phone2FormInput">Téléphone 2</label>
-                                                <input id="phone2FormInput" name="phone2FormInput" class="order-form-input" placeholder="Téléphone 2">
+                                            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                                                <label for="commentFormArea" class="form-label">Commentaire pour le livreur</label>
+                                                <textarea id="commentFormArea" class="form-control" name="firstNameFocommentFormArearmInputInput" placeholder="Ecrivez ici au livreur" rows="3"></textarea>
                                             </div>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <label for="emailFormInput" class="form-label">Email</label>
-                                            <input type="email" id="emailFormInput" name="emailFormInput" aria-describedby="emailHelp" placeholder="Saisissez votre email" required />
-                                            <div id="emailHelp">Nous ne partagerons pas votre adresse email.</div>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <label for="commentFormArea" class="form-label">Commentaire pour le livreur</label>
-                                            <textarea id="commentFormArea" name="firstNameFocommentFormArearmInputInput" placeholder="Ecrivez ici au livreur" rows="3" required></textarea>
                                         </div>
                                         <button id="confirmOrderButton" name="confirmOrderButton" type="submit" class="btn btn-primary btn-block">Confirmer la commande</button>
                                     </div>
@@ -267,11 +258,10 @@
             </footer>
             <!-- END FOOTER -->
         </div>
-        <!-- <script src="js/api-access.js"></script> -->
+        <script src="js/global.js"></script>
         <script src="js/cart.js"></script>
         <script src="https://kit.fontawesome.com/05ffc8aabd.js" crossorigin="anonymous"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- END BLOC PAGE -->
     </body>
 </html>
