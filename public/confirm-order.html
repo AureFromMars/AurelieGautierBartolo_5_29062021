@@ -35,41 +35,41 @@
         <!-- BLOC PAGE -->
         <div id="bloc-page" class="#">
             <!-- HEADER -->
-            <!-- <header class="d-flex flex-nowrap row justify-content-between align-items-center"> -->
-            <header class="section-header d-flex flex-nowrap row justify-content-between align-items-center">
-                <!-- SI LE TEMPS, ALORS JS pour adapter le margin du main à la taille du header -->
-                <!-- <nav id="fixed-nav" class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> -->
-                <nav id="fixed-nav" class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand container-fluid justify-content-between" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <form id="searchForm" class="d-flex">
-                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                        <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
+            <header class="section-header align-items-center m-auto">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row flex-wrap justify-content-envenly align-items-center p-3 m-auto">
+                    <a class="navbar-brand m-auto" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
+                    <form id="searchForm" class="d-flex flex-row flex-wrap m-auto px-2 justify-content-center">
+                        <input id="searchInput" class="form-control form-control-search" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
+                        <button id="searchButton" class="btn btn-primary" type="submit">Rechercher</button>
+                        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse mx-2" id="navbarContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <!-- Bouton pour accéder à la future page de contact -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
+                                </li>
+                                <!-- Bouton du menu de la page du compte utilisateur à créer utltérieurement -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Bouton pour accéder au panier cart.html -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="cart.html">
+                                        <i class="fas fa-shopping-cart fa-2x"></i>
+                                        <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </form>
-                    <div class="collapse navbar-collapse" id="navbarContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Paramètres</a></li>
-                                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-shopping-cart fa-2x"></i>
-                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </nav>
             </header>
             <!-- END HEADER -->

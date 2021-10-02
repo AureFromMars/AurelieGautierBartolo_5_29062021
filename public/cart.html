@@ -39,38 +39,41 @@
         <!-- BLOC PAGE -->
         <div id="bloc-page" class="#">
             <!-- HEADER -->
-            <header class="section-header d-flex flex-nowrap row justify-content-between align-items-center">
-                <nav id="fixed-nav" class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand container-fluid justify-content-between" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <form id="searchForm" class="d-flex">
-                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                        <button id="searchButton" class="btn btn-outline-primary" type="submit">Rechercher</button>
+            <header class="section-header align-items-center m-auto">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row flex-wrap justify-content-envenly align-items-center p-3 m-auto">
+                    <a class="navbar-brand m-auto" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
+                    <form id="searchForm" class="d-flex flex-row flex-wrap m-auto px-2 justify-content-center">
+                        <input id="searchInput" class="form-control form-control-search" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
+                        <button id="searchButton" class="btn btn-primary" type="submit">Rechercher</button>
+                        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse mx-2" id="navbarContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <!-- Bouton pour accéder à la future page de contact -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
+                                </li>
+                                <!-- Bouton du menu de la page du compte utilisateur à créer utltérieurement -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Bouton pour accéder au panier cart.html -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="cart.html">
+                                        <i class="fas fa-shopping-cart fa-2x"></i>
+                                        <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </form>
-                    <div class="collapse navbar-collapse" id="navbarContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg" class="rounded-circle" height="35" alt="" loading="lazy"/>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Paramètres</a></li>
-                                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="cart.html">
-                                    <i class="fas fa-shopping-cart fa-2x"></i>
-                                    <span class="badgeOfProductsStored badge rounded-pill badge-notification bg-secondary"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </nav>
             </header>
             <!-- END HEADER -->
@@ -106,9 +109,9 @@
                                 <h4 class="mb-4">Moyens de paiement</h4>
                                 <hr class="mt-1">
                                 <div class="pt-4 d-flex flex-row flex-wrap justify-content-evenly m-auto">
-                                    <div><i class="fab fa-cc-visa mr-1 fa-3x"></i></div><!-- METTRE DES AL ET TITLE SUR MES IMAGES ###########################################################-->
-                                    <div><i class="fab fa-cc-mastercard mr-1 fa-3x"></i></div>
-                                    <div><i class="fab fa-paypal mr-1 fa-3x"></i></div>
+                                    <div><i class="fab fa-cc-visa mr-1 fa-3x text-secondary"></i></div><!-- METTRE DES AL ET TITLE SUR MES IMAGES ###########################################################-->
+                                    <div><i class="fab fa-cc-mastercard mr-1 fa-3x text-secondary "></i></div>
+                                    <div><i class="fab fa-paypal mr-1 fa-3x text-secondary "></i></div>
                                 </div>
                             </div>
                         </div>
@@ -119,76 +122,81 @@
                                 <h4 class="mb-3">Total de votre commande</h4>
                                 <hr class="mt-1">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        Prix total
-                                        <span id="totalPrice"></span>
-                                        <span class="currency"></span> HT
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        Livraison
-                                        <span>Gratuite</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        Taxe à Valeur Ajoutée (TVA) : 20%
-                                        <span id="totalVAT"></span>
-                                        <span class="currency"></span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                        <div>
-                                            <strong>Prix total de votre commande</strong>
-                                            <strong><p class="mb-0">(TVA incluse)</p></strong>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 my-auto">
+                                        <p class="text-start me-2">Prix total</p>
+                                        <div class="d-flex flex-row">
+                                            <div id="totalPrice"></div>
+                                            <div class="currency"></div>
+                                            <div><p> H.T.</p></div>
                                         </div>
-                                        <strong><span id="fullTotalPrice"></span>
-                                        <span class="currency"></span> TTC</strong>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 my-auto">
+                                        <p class="text-start me-2">Livraison</p>
+                                        <div>Gratuite</div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 my-auto">
+                                        <p class="text-start me-2">Taxe à Valeur Ajoutée (TVA) : 20%</p>
+                                        <div class="d-flex flex-row">
+                                            <div id="totalVAT"></div>
+                                            <div class="currency"></div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 my-auto fw-bold">
+                                        <p class="text-start me-2">Prix total de votre commande<br/>(TVA incluse)</p>
+                                        <div class="d-flex flex-row flex-nowrap">
+                                            <div id="fullTotalPrice"></div>
+                                            <div class="currency"></div>
+                                            <p> TTC</p>
+                                        </div>
                                     </li>
                                 </ul>
-                                <form id="customerInformationsForm" name="customerInformationsForm" class="d-flex flex-column" >
+                                <form id="customerInformationsForm" name="customerInformationsForm" class="d-flex flex-column justify-center align-items-center m-auto" >
                                     <h4>Vos informations de livraison</h4>
                                     <hr class="mt-1">
                                     <p class="text-primary mb-0">Vos informations ne seront ni partagées, ni utilisées à d'autres fins que celles de la commande.</p>
-                                    <div class="d-flex flex-column justify-content-center text-center">
-                                        <div class="d-flex flex-row justify-content-evenly flex-wrap">
-                                            <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="firstNameFormInput">Prénom*</label><!-- pourquoi l'input est bleuté ???????????????????????????????????? -->
+                                    <ul class="d-flex flex-column justify-content-center text-center list-unstyled">
+                                        <li class="d-flex flex-row justify-content-evenly flex-wrap">
+                                            <div class="d-flex flex-column m-2">
+                                                <label class="order-form-label" for="firstNameFormInput">Prénom*</label>
                                                 <input id="firstNameFormInput" name="firstNameFormInput" class="order-form-input form-control .has-error" placeholder="Prénom" required />
                                             </div>
-                                            <div class="d-flex flex-column">
+                                            <div class="d-flex flex-column m-2">
                                                 <label class="order-form-label" for="lastNameFormInput">Nom*</label>
                                                 <input id="lastNameFormInput" name="lastNameFormInput" class="order-form-input form-control" placeholder="Nom" required />
                                             </div>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-evenly flex-wrap">
-                                            <div class="d-flex flex-column">
+                                        </li>
+                                        <li class="d-flex flex-row justify-content-evenly flex-wrap">
+                                            <div class="d-flex flex-column m-2">
                                                 <label class="order-form-label" for="addressFormInput">Adresse*</label>
                                                 <input id="addressFormInput" name="addressFormInput" class="order-form-input form-control" placeholder="Adresse" required />
                                             </div>
-                                            <div class="d-flex flex-column">
+                                            <div class="d-flex flex-column m-2">
                                                 <label class="order-form-label" for="postalCodeFormInput">Code Postal*</label>
                                                 <input id="postalCodeFormInput" name="postalCodeFormInput" class="order-form-input form-control" placeholder="Code Postal" required />
                                             </div>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-evenly flex-wrap">
-                                            <div class="d-flex flex-column">
+                                        </li>
+                                        <li class="d-flex flex-row justify-content-evenly flex-wrap">
+                                            <div class="d-flex flex-column m-2">
                                                 <label class="order-form-label" for="cityFormInput">Ville*</label>
                                                 <input id="cityFormInput" name="cityFormInput" class="order-form-input form-control" placeholder="Ville" required />
                                             </div>
-                                            <div class="d-flex flex-column">
-                                                <label class="order-form-label" for="phone2FormInput">Téléphone 1</label>
-                                                <input id="phone1FormInput" name="phone1FormInput" class="order-form-input form-control" placeholder="Téléphone 1">
+                                            <div class="d-flex flex-column m-2">
+                                                <label class="order-form-label" for="phoneFormInput">Téléphone 1</label>
+                                                <input id="phoneFormInput" name="phoneFormInput" class="order-form-input form-control" placeholder="Téléphone 1">
                                             </div>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center m-auto">
-                                            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                                        </li>
+                                        <li class="text-decoration-none">
+                                            <div class="d-flex flex-column flex-wrap justify-content-evenly m-2">
                                                 <label for="emailFormInput" class="form-label">Email*</label>
                                                 <input type="email" id="emailFormInput" class="form-control" name="emailFormInput" aria-describedby="emailHelp" placeholder="Saisissez votre email" required />
                                             </div>
-                                            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                                            <div class="d-flex flex-column flex-wrap justify-content-evenly m-2">
                                                 <label for="commentFormArea" class="form-label">Commentaire pour le livreur</label>
                                                 <textarea id="commentFormArea" class="form-control" name="firstNameFocommentFormArearmInputInput" placeholder="Ecrivez ici au livreur" rows="3"></textarea>
                                             </div>
-                                        </div>
-                                        <button id="confirmOrderButton" name="confirmOrderButton" type="submit" class="btn btn-primary btn-block">Confirmer la commande</button>
-                                    </div>
+                                        </li>
+                                    </ul>
+                                    <button id="confirmOrderButton" name="confirmOrderButton" type="submit" class="btn btn-primary btn-block">Confirmer la commande</button>
                                 </form>
                             </div>
                         </div>

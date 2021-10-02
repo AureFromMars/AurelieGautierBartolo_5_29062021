@@ -1,24 +1,15 @@
-.btn-outline-info {
+.btn {
+    max-width: 200px;
+    color: #fff;
+
+    &-outline-info {
     color: $primary;
     border-color: $primary;
 
-    :hover{
-        color: #000;
-        background-color: $primary;
-        border-color: $primary;
+        :hover{
+            color: #000;
+            background-color: $primary;
+            border-color: $primary;
+        };
     };
-};
-
-.has-error {
-    border-color: $secondary;
-};
-
-.form-control {
-    &:focus {
-        box-shadow: $primary;
-    };
-    &:invalid {
-        border-color: $secondary;
-    }
-
 };

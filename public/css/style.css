@@ -2893,7 +2893,6 @@ textarea.form-control-lg {
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  cursor: pointer;
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
@@ -10775,6 +10774,10 @@ ul {
   background-color: #F3E9F1;
 }
 
+.btn {
+  max-width: 200px;
+  color: #fff;
+}
 .btn-outline-info {
   color: #8F5BFE;
   border-color: #8F5BFE;
@@ -10783,17 +10786,6 @@ ul {
   color: #000;
   background-color: #8F5BFE;
   border-color: #8F5BFE;
-}
-
-.has-error {
-  border-color: #E68A0A;
-}
-
-.form-control:focus {
-  box-shadow: #8F5BFE;
-}
-.form-control:invalid {
-  border-color: #E68A0A;
 }
 
 #loader {
@@ -10974,12 +10966,18 @@ ul.dropdown-cart li .item-right button {
     stroke-dashoffset: 0;
   }
 }
-#scrolling-nav {
-  margin-top: 125px;
+.form-control {
+  min-width: 150px;
+}
+.form-control-search {
+  max-width: max-content;
+}
+.form-control:focus {
+  box-shadow: #8F5BFE;
 }
 
-.form-control {
-  width: 30vw;
+.has-error {
+  border-color: #E68A0A;
 }
 
 .rating {

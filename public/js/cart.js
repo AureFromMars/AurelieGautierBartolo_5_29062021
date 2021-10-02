@@ -73,15 +73,11 @@ function htmlCartCards(storedProductCard, datas) {
     spanSelectedOptionCart.textContent = datas.varnish;
     spanSelectedOptionCart.className = 'spanSelectedOptionCart';
 
-    // divFormProductQuantityCart
-    const divFormProductQuantityCart = document.createElement('div');
-    divProductContaintOptionsContainer.appendChild(divFormProductQuantityCart);
-
     // formProductQuantityCart
     const formProductQuantityCart = document.createElement('form');
-    divFormProductQuantityCart.appendChild(formProductQuantityCart);
+    divProductContaintOptionsContainer.appendChild(formProductQuantityCart);
     formProductQuantityCart.id = 'productQuantityCart';
-    formProductQuantityCart.className = 'd-flex flex-row my-auto flex-wrap align-items-center';
+    formProductQuantityCart.className = 'd-flex flex-row m-auto flex-wrap justify-content-center align-items-center';
 
     // labelProductQuantityCartSelect
     const labelProductQuantityCartSelect = document.createElement('label');
@@ -109,20 +105,10 @@ function htmlCartCards(storedProductCard, datas) {
     // divUpdateQuantity
     const divUpdateQuantity = document.createElement('div');
     divProductContaintOptionsContainer.appendChild(divUpdateQuantity);
-    divUpdateQuantity.className = 'divUpdateQuantity';
+    divUpdateQuantity.className = 'divUpdateQuantity d-flex flex-nowrap justify-center my-auto py-2 align-items-center';
 
-    // iUpdateQuantity
-    const iUpdateQuantity = document.createElement('i');
-    divUpdateQuantity.appendChild(iUpdateQuantity);
-    iUpdateQuantity.className = 'fas fa-undo-alt me-2';
 
-    // aUpdateQuantity
-    const aUpdateQuantity = document.createElement('a');
-    divUpdateQuantity.appendChild(aUpdateQuantity);
-    aUpdateQuantity.href = '#!';
-    aUpdateQuantity.type = 'button';
-    aUpdateQuantity.className = 'aUpdateQuantity card-link-secondary small text-uppercase';
-    aUpdateQuantity.textContent = "Mettre à jour la quantité";
+    // Fonction pour les 2 a de mise à jour de la quantité
     const functionUpdateQuantity = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
@@ -138,7 +124,32 @@ function htmlCartCards(storedProductCard, datas) {
             }
         }
     };
+
+    // aUpdateQuantityIcon
+    const aUpdateQuantityIcon = document.createElement('a');
+    divUpdateQuantity.appendChild(aUpdateQuantityIcon);
+    aUpdateQuantityIcon.href = '#!';
+    aUpdateQuantityIcon.type = 'button';
+    aUpdateQuantityIcon.onclick = functionUpdateQuantity;
+    
+    // iUpdateQuantity
+    const iUpdateQuantity = document.createElement('i');
+    aUpdateQuantityIcon.appendChild(iUpdateQuantity);
+    iUpdateQuantity.className = 'fas fa-undo-alt me-2 text-decoration-none';
+
+    // aUpdateQuantity
+    const aUpdateQuantity = document.createElement('a');
+    divUpdateQuantity.appendChild(aUpdateQuantity);
+    aUpdateQuantity.href = '#!';
+    aUpdateQuantity.type = 'button';
+    // aUpdateQuantity.className = 'd-flex flex-row justify-center my-auto align-items-center';
     aUpdateQuantity.onclick = functionUpdateQuantity;
+
+    //pUpdateQuantity
+    const pUpdateQuantity = document.createElement('p');
+    aUpdateQuantity.appendChild(pUpdateQuantity);
+    pUpdateQuantity.className = 'pUpdateQuantity card-link-secondary small text-uppercase mb-0';
+    pUpdateQuantity.textContent = "Mettre à jour la quantité";
 
     // divProductSuppAndPriceContainer
     const divProductSuppAndPriceContainer = document.createElement('div');
@@ -166,18 +177,7 @@ function htmlCartCards(storedProductCard, datas) {
     divProductSuppAndPriceContainer.appendChild(divProductSupp);
     divProductSupp.className = 'divProductSupp';
 
-    // iProductSupp
-    const iProductSupp = document.createElement('i');
-    divProductSupp.appendChild(iProductSupp);
-    iProductSupp.className = 'fas fa-trash-alt me-2';
-
-    // aProductSupp
-    const aProductSupp = document.createElement('a');
-    divProductSupp.appendChild(aProductSupp);
-    aProductSupp.href = '#!';
-    aProductSupp.type = 'button';
-    aProductSupp.className = 'aProductSupp card-link-secondary small text-uppercase mr-3';
-    aProductSupp.textContent = "Supprimer du panier";
+    // Fonction pour les 2 a de suppression du panier
     const functionProductSupp = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
@@ -189,6 +189,27 @@ function htmlCartCards(storedProductCard, datas) {
             }
         }
     };
+
+    // aProductSuppIcon
+    const aProductSuppIcon = document.createElement('a');
+    divProductSupp.appendChild(aProductSuppIcon);
+    aProductSuppIcon.href = '#!';
+    aProductSuppIcon.type = 'button';
+    // aProductSuppIcon.className = 'aProductSuppIcon card-link-secondary small text-uppercase mr-3';
+    aProductSuppIcon.onclick = functionProductSupp;
+
+    // iProductSupp
+    const iProductSupp = document.createElement('i');
+    aProductSuppIcon.appendChild(iProductSupp);
+    iProductSupp.className = 'fas fa-trash-alt me-2 text-decoration-none';
+
+    // aProductSupp
+    const aProductSupp = document.createElement('a');
+    divProductSupp.appendChild(aProductSupp);
+    aProductSupp.href = '#!';
+    aProductSupp.type = 'button';
+    aProductSupp.className = 'aProductSupp card-link-secondary small text-uppercase mr-3';
+    aProductSupp.textContent = "Supprimer du panier";
     aProductSupp.onclick = functionProductSupp;
 };
 
@@ -265,7 +286,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 errorMessage += "- vous n'avez pas renseigné votre Prénom.\n";
                 return false;
             }
-            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(firstNameFormInput.value))) {// Mettre le regex à l'intérieur de /^ +$/
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(firstNameFormInput.value))) {// Mettre le regex à l'intérieur de /^ +$/
                 errorMessage += "- vous avez un caractère invalide dans votre Prénom.\n";
                 return false;
             };
@@ -275,9 +296,10 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         function checkLastName() {
             if (lastNameFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Nom.\n";
+                // document.getElementsByClassName('form-control:invalid').borderColor = $secondary;
                 return false;
             }
-            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(lastNameFormInput.value))) {
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(lastNameFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Nom.\n";
                 return false;
             };
@@ -289,7 +311,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 errorMessage += "- vous n'avez pas renseigné votre Adresse.\n";
                 return false;
             }
-            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/.test(addressFormInput.value))) {
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/.test(addressFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Adresse.\n";
                 return false;
             };
@@ -301,7 +323,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 errorMessage += "- vous n'avez pas renseigné votre Ville.\n";
                 return false;
             }
-            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(cityFormInput.value))) {
+            else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(cityFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Ville.\n";
                 return false;
             };

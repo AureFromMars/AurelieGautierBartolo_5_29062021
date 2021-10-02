@@ -79,7 +79,7 @@ function htmlCards(productsCards, datas) {
     // aSeeProductCardButton
     const aSeeProductCardButton = document.createElement('a');
     divCardButtons.appendChild(aSeeProductCardButton);
-    aSeeProductCardButton.className = 'btn btn-outline-primary px-3';
+    aSeeProductCardButton.className = 'btn btn-primary px-3';
     aSeeProductCardButton.textContent = "Voir le produit";
     aSeeProductCardButton.setAttribute('role', 'button');
     aSeeProductCardButton.href = 'product.html?id=' + datas._id;
