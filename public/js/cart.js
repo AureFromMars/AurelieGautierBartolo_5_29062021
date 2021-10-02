@@ -415,8 +415,8 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 .then( content => {
                 console.log("Données renvoyées par l'API :", content),
 
-                localStorage.setItem('orderId', JSON.stringify(content.orderId)),
-                localStorage.removeItem('productsArray')
+                localStorage.setItem('orderId', JSON.stringify(content.orderId)),// Stocker l'orderId dans le localStorage en cas de besoin
+                localStorage.removeItem('productsArray')// Vider le panier
                 window.location.href = 'confirm-order.html'// Rediriger vers la page de confirmation de commande
                 });
             } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
@@ -424,24 +424,5 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
             };
         };
         functionSendOrder();
-
-        // Éviter que l'évènement courant ne se propage plus loin dans les phases de capture et de déploiement
-        // event.stopPropagation();// Pas utile sur le submit d'un formulaire // Utile pour l'event d'un bouton au clic car submit en plus de l'event
-
-        // Vider le panier, mais conserver les données client et numéro de commande
-
-        // localStorage.removeItem('productsArray');
-
-        // Rediriger vers la page de confirmation de commande
-        // window.location.href = 'confirm-order.html';
     });
 };
-
-/** 
-PLAN DE TEST, pas TEST
-
-excel avec les fichier et fonctions X (qui sert à quoi, résultat attendu), de la ligne Y, pour la tester quoi faire
-pour tester la fonction d'affichage des produits de la page d'accueil, il faut l'appeler et vérifier que les produits s'affichent bien dans la page, causes possibles : variable furniture vide, n'existe pas, le appendchild n'existe pas si modif HTML
-voir TDD
-
-*/
