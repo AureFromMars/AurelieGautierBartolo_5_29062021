@@ -27,8 +27,8 @@ function htmlCartCards(storedProductCard, datas) {
     const imgCard = document.createElement('img');
     aSeeProductCardButton.appendChild(imgCard);
     imgCard.setAttribute('src', datas.imageUrl);
-    imgCard.setAttribute('alt', "# " + datas.name);
-    imgCard.setAttribute('title', "# " + datas.name);
+    imgCard.setAttribute('alt', "# Image du produit " + datas.name);
+    imgCard.setAttribute('title', "# Image du produit " + datas.name);
     imgCard.width = "300";
     imgCard.height = "200";
     imgCard.className = 'productImage img-fluid rounded';

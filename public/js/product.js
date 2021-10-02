@@ -31,6 +31,8 @@ function htmlProductPage(datas) {
     // Afficher l'image
     const productImage = document.getElementsByClassName('productImage')[0];
     productImage.setAttribute('src', datas.imageUrl);
+    productImage.setAttribute('alt', "# Image du produit " + datas.name);
+    productImage.setAttribute('title', "# Image du produit " + datas.name);
     
     // Afficher le nom
     const productName = document.getElementsByClassName('productName')[0];
