@@ -94,7 +94,7 @@
                     <!--AFFICHAGE DU PRODUIT-->
                     <div class="row">
                         <figure class="col-md-6 mb-4 mb-md-0 rounded z-depth-1 main-img">
-                            <img class="productImage img-fluid z-depth-1 rounded">
+                            <img class="productImage img-fluid z-depth-1 rounded" />
                         </figure>
                         <div class="col-md-6">
                             <h2 class="productName"></h2>
@@ -109,24 +109,26 @@
                             <p class="productDescription pt-1"></p>
                             <hr>
                             <form id="addToCartForm" method="post">
-                                <div class="form-group def-number-input number-input safari_only mb-0 d-flex flex-row">
-                                    <label for="quantitySelect">Choisir le quantité (max. 10)</label>
-                                    <input id="quantitySelect" name="quantitySelect" type="number" value="1" min="1" max="10">
-                                    <span id="quantitySelectError"></span>
+                                <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                                    <div class="form-group def-number-input number-input safari_only mb-0 d-flex flex-row">
+                                        <label for="quantitySelect">Choisir le quantité (max. 10)</label>
+                                        <input class="form-control form-control-search" id="quantitySelect" name="quantitySelect" type="number" value="1" min="1" max="10">
+                                        <span id="quantitySelectError"></span>
+                                    </div>
+                                    <div class="form-group d-flex flex-row">
+                                        <label for="optionSelect">Choisir la couleur</label>
+                                        <select class="form-control form-control-search" name="optionSelect" id="optionSelect"></select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="optionSelect">Choisir la couleur</label>
-                                    <select class="form-control" name="optionSelect" id="optionSelect"></select>
-                                </div>
-                                    <button id="addToCart" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
-                                        <i class="fas fa-shopping-cart pr-2"></i>
-                                        Ajouter au panier
-                                    </button>
+                                <button id="addToCart" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
+                                    <i class="fas fa-shopping-cart pr-2"></i>
+                                    Ajouter au panier
+                                </button>
                                 <div class="modal fade" id="confirmAddToCartModal" tabindex="-1" aria-labelledby="confirmAddToCartModal" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="confirmAddToCartModal">Votre produit a bien été ajouté au panier !</h5>
+                                                    <h5 class="modal-title" id="h5ConfirmAddToCartModal">Votre produit a bien été ajouté au panier !</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.location.reload()"></button>
                                                 </div>
                                                 <div class="modal-body">

@@ -41,7 +41,7 @@ function htmlCartCards(storedProductCard, datas) {
     // divProductContaintOptionsContainer
     const divProductContaintOptionsContainer = document.createElement('div');
     divProductContaintContainer.appendChild(divProductContaintOptionsContainer);
-    divProductContaintOptionsContainer.className = 'divProductContaintOptionsContainer d-flex flex-column flex-wrap my-2 mx-4 align-items-center justify-content-between mw-250';
+    divProductContaintOptionsContainer.className = 'divProductContaintOptionsContainer d-flex flex-column flex-wrap my-auto mx-4 align-items-center mw-250';
 
     // divH3ProductName
     const divH3ProductName = document.createElement('div');
@@ -105,7 +105,7 @@ function htmlCartCards(storedProductCard, datas) {
     // divUpdateQuantity
     const divUpdateQuantity = document.createElement('div');
     divProductContaintOptionsContainer.appendChild(divUpdateQuantity);
-    divUpdateQuantity.className = 'divUpdateQuantity d-flex flex-nowrap justify-center my-auto py-2 align-items-center';
+    divUpdateQuantity.className = 'divUpdateQuantity d-flex flex-nowrap justify-content-center my-auto py-2 align-items-center';
 
 
     // Fonction pour les 2 a de mise à jour de la quantité
@@ -154,7 +154,7 @@ function htmlCartCards(storedProductCard, datas) {
     // divProductSuppAndPriceContainer
     const divProductSuppAndPriceContainer = document.createElement('div');
     divProductContaintContainer.appendChild(divProductSuppAndPriceContainer);
-    divProductSuppAndPriceContainer.className = 'divProductSuppAndPriceContainer d-flex flex-column justify-content-between m-2 align-items-center';
+    divProductSuppAndPriceContainer.className = 'divProductSuppAndPriceContainer d-flex flex-column my-auto mx-2 align-items-center';
 
     // h4ProductPrice
     const h4ProductPrice = document.createElement('h4');
@@ -195,7 +195,6 @@ function htmlCartCards(storedProductCard, datas) {
     divProductSupp.appendChild(aProductSuppIcon);
     aProductSuppIcon.href = '#!';
     aProductSuppIcon.type = 'button';
-    // aProductSuppIcon.className = 'aProductSuppIcon card-link-secondary small text-uppercase mr-3';
     aProductSuppIcon.onclick = functionProductSupp;
 
     // iProductSupp
@@ -284,61 +283,75 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         function checkFirstName() {
             if (firstNameFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Prénom.\n";
+                firstNameFormInput.className += ' is-invalid';
                 return false;
             }
             else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(firstNameFormInput.value))) {// Mettre le regex à l'intérieur de /^ +$/
                 errorMessage += "- vous avez un caractère invalide dans votre Prénom.\n";
+                firstNameFormInput.className += ' is-invalid';
                 return false;
             };
+            firstNameFormInput.classList.remove('is-invalid');
             return true;
         }; checkFirstName();
 
         function checkLastName() {
             if (lastNameFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Nom.\n";
-                // document.getElementsByClassName('form-control:invalid').borderColor = $secondary;
+                lastNameFormInput.className += ' is-invalid';
                 return false;
             }
             else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(lastNameFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Nom.\n";
+                lastNameFormInput.className += ' is-invalid';
                 return false;
             };
+            lastNameFormInput.classList.remove('is-invalid');
             return true;
         }; checkLastName();
 
         function checkAddress() {
             if (addressFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Adresse.\n";
+                addressFormInput.className += ' is-invalid';
                 return false;
             }
             else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/.test(addressFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Adresse.\n";
+                addressFormInput.className += ' is-invalid';
                 return false;
             };
+            addressFormInput.classList.remove('is-invalid');
             return true;
         }; checkAddress();
 
         function checkCity() {
             if (cityFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Ville.\n";
+                cityFormInput.className += ' is-invalid';
                 return false;
             }
             else if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(cityFormInput.value))) {
                 errorMessage += "- vous avez un caractère invalide dans votre Ville.\n";
+                cityFormInput.className += ' is-invalid';
                 return false;
             };
+            cityFormInput.classList.remove('is-invalid');
             return true;
         }; checkCity();
 
         function checkEmail() {
             if (emailFormInput.value === ""){
                 errorMessage += "- vous n'avez pas renseigné votre Adresse Email.\n";
+                emailFormInput.className += ' is-invalid';
                 return false;
             }
             else if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailFormInput.value))) {
                 errorMessage += "- le format de votre Email n'est pas valide.\n"
+                emailFormInput.className += ' is-invalid';
                 return false;
             };
+            emailFormInput.classList.remove('is-invalid');
             return true;
         }; checkEmail();
 
@@ -390,19 +403,22 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
         // Envoyer les données de l'objet au serveur
         let functionSendOrder = async () => {
             try {
-                const postToOrderApiFolder = await fetch('http://localhost:3000/api/furniture/order', {
+                fetch('http://localhost:3000/api/furniture/order', {
                     method : 'POST',
                     headers :{
                         'Accept' : 'application/json',
                         'Content-type' : 'application/json'
                     },
                     body: JSON.stringify(confirmOrderDatas)
+                })
+                .then( response => response.json())
+                .then( content => {
+                console.log("Données renvoyées par l'API :", content),
+
+                localStorage.setItem('orderId', JSON.stringify(content.orderId)),
+                localStorage.removeItem('productsArray')
+                window.location.href = 'confirm-order.html'// Rediriger vers la page de confirmation de commande
                 });
-                const content = await postToOrderApiFolder.json();
-                console.log("Données renvoyées par l'API :", content);
-
-                localStorage.setItem('orderId', JSON.stringify(content.orderId));
-
             } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
                 alert(e)
             };
@@ -414,10 +430,10 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
 
         // Vider le panier, mais conserver les données client et numéro de commande
 
-        localStorage.removeItem('productsArray');
+        // localStorage.removeItem('productsArray');
 
         // Rediriger vers la page de confirmation de commande
-        window.location.href = 'confirm-order.html';
+        // window.location.href = 'confirm-order.html';
     });
 };
 

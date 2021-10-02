@@ -8,13 +8,14 @@
     &:focus {
         box-shadow: $primary;
     };
-    // &:invalid {
-    //     border-color: $secondary;
-    // }
 
 };
 
+// .is-invalid {
+//     max-width: 200px;
+// };
 
-.has-error {
-    border-color: $secondary;
-};
+
+// .input-error {
+//     border-color: $secondary;
+// };
