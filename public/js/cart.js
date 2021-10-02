@@ -7,15 +7,15 @@ for ( let i = 0; i < currency.length; i++) {
 
 // Conception HTML de la carte du produit
 function htmlCartCards(storedProductCard, datas) {
-    // li
+    // liCard
     const liCard = document.createElement('li');
     storedProductCard.appendChild(liCard);
-    liCard.className = 'row mb-4 d-flex justify-content-center';
+    liCard.className = 'liCard d-flex flex-row flex-wrap mx-auto my-4 w-75 justify-content-center';
 
     // divImgContainer
     const divCardContainer = document.createElement('div');
     liCard.appendChild(divCardContainer);
-    divCardContainer.className = 'col-md-5 col-lg-3 col-xl-3';
+    divCardContainer.className = 'divImgContainer';
 
     // aSeeProductCardButton
     const aSeeProductCardButton = document.createElement('a');
@@ -36,86 +36,94 @@ function htmlCartCards(storedProductCard, datas) {
     // divProductContaintContainer
     const divProductContaintContainer = document.createElement('div');
     liCard.appendChild(divProductContaintContainer);
-    divProductContaintContainer.className = 'col-md-7 col-lg-9 col-xl-9';
+    divProductContaintContainer.className = 'divProductContaintContainer d-flex flex-row flex-wrap justify-content-center m-2';
 
     // divProductContaintOptionsContainer
     const divProductContaintOptionsContainer = document.createElement('div');
     divProductContaintContainer.appendChild(divProductContaintOptionsContainer);
-    divProductContaintOptionsContainer.className = 'd-flex justify-content-between';
+    divProductContaintOptionsContainer.className = 'divProductContaintOptionsContainer d-flex flex-column flex-wrap my-2 mx-4 align-items-center justify-content-between mw-250';
 
-    // divProductContaintOptionsContainerBis
-    const divProductContaintOptionsContainerBis = document.createElement('div');
-    divProductContaintOptionsContainer.appendChild(divProductContaintOptionsContainerBis);
-
+    // divH3ProductName
+    const divH3ProductName = document.createElement('div');
+    divProductContaintOptionsContainer.appendChild(divH3ProductName);
+    divH3ProductName.className = 'divH3ProductName';
+    
     // h3ProductName
     const h3ProductName = document.createElement('h3');
-    divProductContaintOptionsContainerBis.appendChild(h3ProductName);
+    divProductContaintOptionsContainer.appendChild(h3ProductName);
     h3ProductName.textContent = datas.name;
-    h3ProductName.className = 'productName';
+    h3ProductName.className = 'h3ProductName';
+    h3ProductName.style.maxWidth = '200px';
 
     // divSelectedOptionCart
     const divSelectedOptionCart = document.createElement('div');
-    divProductContaintOptionsContainerBis.appendChild(divSelectedOptionCart);
+    divProductContaintOptionsContainer.appendChild(divSelectedOptionCart);
+    divSelectedOptionCart.className = 'divSelectedOptionCart';
 
     // strongSelectedOptionCart
     const strongSelectedOptionCart = document.createElement('strong');
     divSelectedOptionCart.appendChild(strongSelectedOptionCart);
     strongSelectedOptionCart.textContent = "Couleur : ";
+    strongSelectedOptionCart.className = 'strongSelectedOptionCart';
 
     // spanSelectedOptionCart
     const spanSelectedOptionCart = document.createElement('span');
     strongSelectedOptionCart.appendChild(spanSelectedOptionCart);
     spanSelectedOptionCart.id = 'selectedOptionCart';
     spanSelectedOptionCart.textContent = datas.varnish;
+    spanSelectedOptionCart.className = 'spanSelectedOptionCart';
+
+    // divFormProductQuantityCart
+    const divFormProductQuantityCart = document.createElement('div');
+    divProductContaintOptionsContainer.appendChild(divFormProductQuantityCart);
 
     // formProductQuantityCart
     const formProductQuantityCart = document.createElement('form');
-    divProductContaintOptionsContainerBis.appendChild(formProductQuantityCart);
+    divFormProductQuantityCart.appendChild(formProductQuantityCart);
     formProductQuantityCart.id = 'productQuantityCart';
+    formProductQuantityCart.className = 'd-flex flex-row my-auto flex-wrap align-items-center';
 
     // labelProductQuantityCartSelect
     const labelProductQuantityCartSelect = document.createElement('label');
-    divProductContaintOptionsContainerBis.appendChild(labelProductQuantityCartSelect);
+    formProductQuantityCart.appendChild(labelProductQuantityCartSelect);
     labelProductQuantityCartSelect.for = 'productQuantityCartSelect';
 
     // strongProductQuantityCartSelect
     const strongProductQuantityCartSelect = document.createElement('strong');
     labelProductQuantityCartSelect.appendChild(strongProductQuantityCartSelect);
     strongProductQuantityCartSelect.textContent = "Quantité (max. 10) : ";
-    strongProductQuantityCartSelect.className = "me-2";
+    strongProductQuantityCartSelect.className = "strongProductQuantityCartSelect me-2";
 
     // inputProductQuantityCartSelect
     const inputProductQuantityCartSelect = document.createElement('input');
-    divProductContaintOptionsContainerBis.appendChild(inputProductQuantityCartSelect);
+    formProductQuantityCart.appendChild(inputProductQuantityCartSelect);
     inputProductQuantityCartSelect.id = 'productQuantityCartSelect';
     inputProductQuantityCartSelect.name = 'productQuantityCartSelect';
     inputProductQuantityCartSelect.type = 'number';
     inputProductQuantityCartSelect.value = datas.quantity;
     inputProductQuantityCartSelect.min = '1';
     inputProductQuantityCartSelect.max = '10';
+    inputProductQuantityCartSelect.className = 'm-auto';
+    inputProductQuantityCartSelect.style.maxWidth = '50px';
 
-    // divProductSuppAndPriceContainer
-    const divProductSuppAndPriceContainer = document.createElement('div');
-    divProductContaintContainer.appendChild(divProductSuppAndPriceContainer);
-    divProductSuppAndPriceContainer.className = 'd-flex justify-content-between align-items-center m-2';
+    // divUpdateQuantity
+    const divUpdateQuantity = document.createElement('div');
+    divProductContaintOptionsContainer.appendChild(divUpdateQuantity);
+    divUpdateQuantity.className = 'divUpdateQuantity';
 
-    // divChangeQuantity
-    const divChangeQuantity = document.createElement('div');
-    divProductSuppAndPriceContainer.appendChild(divChangeQuantity);
+    // iUpdateQuantity
+    const iUpdateQuantity = document.createElement('i');
+    divUpdateQuantity.appendChild(iUpdateQuantity);
+    iUpdateQuantity.className = 'fas fa-undo-alt me-2';
 
-    // iChangeQuantity
-    const iChangeQuantity = document.createElement('i');
-    divChangeQuantity.appendChild(iChangeQuantity);
-    iChangeQuantity.className = 'fas fa-undo-alt me-2';
-
-    // aChangeQuantity
-    const aChangeQuantity = document.createElement('a');
-    divChangeQuantity.appendChild(aChangeQuantity);
-    aChangeQuantity.href = '#!';
-    aChangeQuantity.type = 'button';
-    aChangeQuantity.className = 'card-link-secondary small text-uppercase mr-3';
-    aChangeQuantity.textContent = "Modifier la quantité";
-    const functionChangeQuantity = () => {
+    // aUpdateQuantity
+    const aUpdateQuantity = document.createElement('a');
+    divUpdateQuantity.appendChild(aUpdateQuantity);
+    aUpdateQuantity.href = '#!';
+    aUpdateQuantity.type = 'button';
+    aUpdateQuantity.className = 'aUpdateQuantity card-link-secondary small text-uppercase';
+    aUpdateQuantity.textContent = "Mettre à jour la quantité";
+    const functionUpdateQuantity = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
         for ( let i = 0; i < productCartStored.length; i++) {
@@ -130,11 +138,33 @@ function htmlCartCards(storedProductCard, datas) {
             }
         }
     };
-    aChangeQuantity.onclick = functionChangeQuantity;
+    aUpdateQuantity.onclick = functionUpdateQuantity;
+
+    // divProductSuppAndPriceContainer
+    const divProductSuppAndPriceContainer = document.createElement('div');
+    divProductContaintContainer.appendChild(divProductSuppAndPriceContainer);
+    divProductSuppAndPriceContainer.className = 'divProductSuppAndPriceContainer d-flex flex-column justify-content-between m-2 align-items-center';
+
+    // h4ProductPrice
+    const h4ProductPrice = document.createElement('h4');
+    divProductSuppAndPriceContainer.appendChild(h4ProductPrice);
+    h4ProductPrice.className = 'h4ProductPrice';
+
+    // spanProductPrice
+    const spanProductPrice = document.createElement('span');
+    h4ProductPrice.appendChild(spanProductPrice);
+    spanProductPrice.className = 'spanProductPrice';
+
+    //strongProductPrice
+    const strongProductPrice = document.createElement('strong');
+    spanProductPrice.appendChild(strongProductPrice);
+    strongProductPrice.textContent = (datas.quantity*datas.price) + currencySymbol;
+    strongProductPrice.className = 'strongProductPrice';
 
     // divProductSupp
     const divProductSupp = document.createElement('div');
     divProductSuppAndPriceContainer.appendChild(divProductSupp);
+    divProductSupp.className = 'divProductSupp';
 
     // iProductSupp
     const iProductSupp = document.createElement('i');
@@ -146,7 +176,7 @@ function htmlCartCards(storedProductCard, datas) {
     divProductSupp.appendChild(aProductSupp);
     aProductSupp.href = '#!';
     aProductSupp.type = 'button';
-    aProductSupp.className = 'card-link-secondary small text-uppercase mr-3';
+    aProductSupp.className = 'aProductSupp card-link-secondary small text-uppercase mr-3';
     aProductSupp.textContent = "Supprimer du panier";
     const functionProductSupp = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
@@ -160,20 +190,6 @@ function htmlCartCards(storedProductCard, datas) {
         }
     };
     aProductSupp.onclick = functionProductSupp;
-
-    // pProductPrice
-    const pProductPrice = document.createElement('p');
-    divProductSuppAndPriceContainer.appendChild(pProductPrice);
-    pProductPrice.className = 'mb-0';
-
-    // spanProductPrice
-    const spanProductPrice = document.createElement('span');
-    pProductPrice.appendChild(spanProductPrice);
-
-    //strongProductPrice
-    const strongProductPrice = document.createElement('strong');
-    spanProductPrice.appendChild(strongProductPrice);
-    strongProductPrice.textContent = (datas.quantity*datas.price) + currencySymbol;
 };
 
 // Compter le nombre d'articles dans le panier, créer les cartes de produits, les taux de la commande
