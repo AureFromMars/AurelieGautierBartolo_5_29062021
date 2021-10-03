@@ -6,15 +6,15 @@ let furnitures = [];// Déclaration de ma variable avec un tableau vide
 try {
     fetch('http://localhost:3000/api/furniture/' + idPage)
         .then(response => {// Accéder à l'API
-        console.log(response);
-        return response.json();
+            console.log(response);
+            return response.json();
         })
         .then(data => {//Accéder à mon tableau de données
-        console.log(data);
-        furnitures = data;
-        // Afficher la page du produit
-        htmlProductPage(data);
-        hideLoader();
+            console.log(data);
+            furnitures = data;
+            // Afficher la page du produit
+            htmlProductPage(data);
+            hideLoader();
         });
 } catch (e) {//Afficher une alerte d'erreur en cas de problèmes d'accès
     alert(e)
@@ -31,6 +31,8 @@ function htmlProductPage(datas) {
     // Afficher l'image
     const productImage = document.getElementsByClassName('productImage')[0];
     productImage.setAttribute('src', datas.imageUrl);
+    productImage.setAttribute('alt', "# Image du produit " + datas.name);
+    productImage.setAttribute('title', "# Image du produit " + datas.name);
     
     // Afficher le nom
     const productName = document.getElementsByClassName('productName')[0];
@@ -48,9 +50,9 @@ function htmlProductPage(datas) {
     const optionSelect = document.getElementById('optionSelect'); // Récupération du label
     // Créer autant d'options que d'éléments du tableau
     for (let i = 0; i < datas.varnish.length; i++) {
-        let optionCreateOption = document.createElement('option'); // Création option
-        optionSelect.appendChild(optionCreateOption); // Dépendance option au parent
-        optionCreateOption.textContent = datas.varnish[i]; // Affichage du texte ciblé dans mon option
+        let createOption = document.createElement('option'); // Création option
+        optionSelect.appendChild(createOption); // Dépendance option au parent
+        createOption.textContent = datas.varnish[i]; // Affichage du texte ciblé dans mon option
     };
 
     // Evenenements au click du bouton

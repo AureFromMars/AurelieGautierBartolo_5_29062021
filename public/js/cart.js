@@ -1,7 +1,7 @@
 // Définir la devise et l'appliquer à chaque endroit où le prix est afficher
 const currencySymbol = " €";
 const currency = document.getElementsByClassName('currency');
-for ( let i = 0; i < currency.length; i++) {
+for ( let i = 0; i < currency.length; i++) {// Ajouter le symbole de la devise à chaque élément de la classe
     currency[i].textContent = currencySymbol;
 };
 
@@ -27,8 +27,8 @@ function htmlCartCards(storedProductCard, datas) {
     const imgCard = document.createElement('img');
     aSeeProductCardButton.appendChild(imgCard);
     imgCard.setAttribute('src', datas.imageUrl);
-    imgCard.setAttribute('alt', "# " + datas.name);
-    imgCard.setAttribute('title', "# " + datas.name);
+    imgCard.setAttribute('alt', "# Image du produit " + datas.name);
+    imgCard.setAttribute('title', "# Image du produit " + datas.name);
     imgCard.width = "300";
     imgCard.height = "200";
     imgCard.className = 'productImage img-fluid rounded';
@@ -108,7 +108,7 @@ function htmlCartCards(storedProductCard, datas) {
     divUpdateQuantity.className = 'divUpdateQuantity d-flex flex-nowrap justify-content-center my-auto py-2 align-items-center';
 
 
-    // Fonction pour les 2 a de mise à jour de la quantité
+    // Fonction pour les 2 <a> de mise à jour de la quantité
     const functionUpdateQuantity = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
@@ -177,7 +177,7 @@ function htmlCartCards(storedProductCard, datas) {
     divProductSuppAndPriceContainer.appendChild(divProductSupp);
     divProductSupp.className = 'divProductSupp';
 
-    // Fonction pour les 2 a de suppression du panier
+    // Fonction pour les 2 <a> de suppression du panier
     const functionProductSupp = () => {
         let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
 
@@ -246,13 +246,13 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
 
     // Calculer les totaux de la commande
     const totalPrice = document.getElementById('totalPrice');
-    functionCalCulateTotalPrice = () => {
+    functionCalculateTotalPrice = () => {
         let calculatePrice = 0;
         for (let i = 0; i < productStoredinLocalStorage.length; i++) {
             calculatePrice += Number(productStoredinLocalStorage[i].price) * Number(productStoredinLocalStorage[i].quantity);
         } return calculatePrice;
     };
-    totalPrice.textContent = functionCalCulateTotalPrice().toFixed(2);
+    totalPrice.textContent = functionCalculateTotalPrice().toFixed(2);
 
     const totalVAT = document.getElementById('totalVAT');
     totalVAT.textContent = (Number(totalPrice.textContent) * 0.2).toFixed(2);
