@@ -260,6 +260,11 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
     const fullTotalPrice = document.getElementById('fullTotalPrice');
     fullTotalPrice.textContent = (Number(totalPrice.textContent) + Number(totalVAT.textContent)).toFixed(2);
 
+    const addfullTotalPriceToLocalStorage = () => {// Ajouter fullTotalPrice au localStorage
+        localStorage.setItem('fullTotalPrice', JSON.stringify(fullTotalPrice.textContent)); // Nommer et stringifier l'objet analysé pour JSON
+    };
+    addfullTotalPriceToLocalStorage();
+
     // Valider la commande avec le bouton de confirmation et rediriger vers confirm-order.html
     const customerInformationsForm = document.getElementById('customerInformationsForm');
 
@@ -369,7 +374,7 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
             email : emailFormInput.value,
         };
 
-        // Envoyer mon objet contact dans le localStorage, en cas de besoin ultérieur
+        // Envoyer mon objet contact dans le localStorage pour la page de confirmation de commande
         const addContactToLocalStorage = () => {
             localStorage.setItem('contact', JSON.stringify(contact)); // Nommer et stringifier l'objet analysé pour JSON
         };
@@ -415,7 +420,8 @@ if ( productStoredinLocalStorage === null || productStoredinLocalStorage.length 
                 .then( content => {
                 console.log("Données renvoyées par l'API :", content),
 
-                localStorage.setItem('orderId', JSON.stringify(content.orderId)),// Stocker l'orderId dans le localStorage en cas de besoin
+                localStorage.setItem('orderId', JSON.stringify(content.orderId)),// Stocker l'orderId dans le localStorage pour la page de confirmation de commande
+
                 localStorage.removeItem('productsArray')// Vider le panier
                 window.location.href = 'confirm-order.html'// Rediriger vers la page de confirmation de commande
                 });
