@@ -93,7 +93,7 @@ function htmlCartCards(storedProductCard, datas) {
     // inputProductQuantityCartSelect
     const inputProductQuantityCartSelect = document.createElement('input');
     formProductQuantityCart.appendChild(inputProductQuantityCartSelect);
-    inputProductQuantityCartSelect.id = 'productQuantityCartSelect';
+    // inputProductQuantityCartSelect.id = 'productQuantityCartSelect';// Inutilisé et erroné pour cartes multiples
     inputProductQuantityCartSelect.name = 'productQuantityCartSelect';
     inputProductQuantityCartSelect.type = 'number';
     inputProductQuantityCartSelect.value = datas.quantity;
@@ -110,7 +110,7 @@ function htmlCartCards(storedProductCard, datas) {
 
     // Fonction pour les 2 <a> de mise à jour de la quantité
     const functionUpdateQuantity = () => {
-        let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
+        let productCartStored = JSON.parse(localStorage.getItem('productsArray'));
 
         for ( let i = 0; i < productCartStored.length; i++) {
             if ((productCartStored[i].id === datas.id) && (productCartStored[i].varnish === datas.varnish)) {
@@ -118,7 +118,7 @@ function htmlCartCards(storedProductCard, datas) {
                 if (productCartStored[i].quantity > 10) {
                     productCartStored[i].quantity = 10;
                 };
-                localStorage.setItem("productsArray", JSON.stringify(productCartStored));
+                localStorage.setItem('productsArray', JSON.stringify(productCartStored));
                 console.log(productCartStored[i].quantity);
                 location.reload();// Recharger la page pour mettre à jour le prix
             }
@@ -179,12 +179,12 @@ function htmlCartCards(storedProductCard, datas) {
 
     // Fonction pour les 2 <a> de suppression du panier
     const functionProductSupp = () => {
-        let productCartStored = JSON.parse(localStorage.getItem("productsArray"));
+        let productCartStored = JSON.parse(localStorage.getItem('productsArray'));
 
         for ( let i = 0; i < productCartStored.length; i++) {
             if ((productCartStored[i].id === datas.id) && (productCartStored[i].varnish === datas.varnish)) { // Récupérer mon objet
                 productCartStored.splice(i,1);//Supprimer l'élément du tableau
-                localStorage.setItem("productsArray", JSON.stringify(productCartStored)); // Remettre mon tableau modifié dans le localStorage
+                localStorage.setItem('productsArray', JSON.stringify(productCartStored)); // Remettre mon tableau modifié dans le localStorage
                 location.reload();// Recharger la page
             }
         }

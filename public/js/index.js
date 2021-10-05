@@ -46,7 +46,7 @@ function htmlCards(productsCards, datas) {
     // aSeeProductImgLink
     const aSeeProductImgLink = document.createElement('a');
     divCardContainer.appendChild(aSeeProductImgLink);
-    aSeeProductImgLink.href = "product.html?id=" + datas._id;// ATTENTION, le bouton reste actif, même après rechargement de la page !!! Je crois que c'est le cas de tous les boutons !
+    aSeeProductImgLink.href = "product.html?id=" + datas._id;
     aSeeProductImgLink.target = "_blank";
 	divCardContainer.className = '';
 

@@ -40,11 +40,13 @@
         <div id="bloc-page" class="#">
             <!-- HEADER -->
             <header class="section-header align-items-center m-auto">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row flex-wrap justify-content-envenly align-items-center p-3 m-auto">
-                    <a class="navbar-brand m-auto" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
-                    <form id="searchForm" class="d-flex flex-row flex-wrap m-auto px-2 justify-content-center">
-                        <input id="searchInput" class="form-control form-control-search" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article">
-                        <button id="searchButton" class="btn btn-primary" type="submit">Rechercher</button>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row flex-wrap justify-content-between align-items-center px-3 my-auto">
+                    <a class="navbar-brand my-auto" href="index.html"><img class="logo" src="img/orinoco-logo.png" width=200 height=100 alt="Logo Orinoco" title="Page d'accueil d'Orinoco, votre meilleur site de vente en ligne" /></a>
+                    <div class="d-flex flex-row flex-wrap my-auto mx-2 justify-content-center">
+                        <form id="searchForm" class="d-flex flex-row flex-nowrap">
+                            <input id="searchInput" class="form-control form-control-search" type="search" placeholder="Rechercher..." aria-label="Rechercher un article">
+                            <button id="searchButton" class="btn btn-primary" type="submit">Rechercher</button>
+                        </form>
                         <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -73,7 +75,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </form>
+                    </div>
                 </nav>
             </header>
             <!-- END HEADER -->
@@ -111,7 +113,7 @@
                             <form id="addToCartForm" method="post">
                                 <div class="d-flex flex-row flex-wrap justify-content-evenly">
                                     <div class="form-group def-number-input number-input safari_only p-2 m-auto d-flex flex-row align-items-center">
-                                        <label for="quantitySelect">Choisir le quantité (max. 10)</label>
+                                        <label for="quantitySelect">Choisir la quantité (max. 10)</label>
                                         <input class="form-control form-control-search ms-2" id="quantitySelect" name="quantitySelect" type="number" value="1" min="1" max="10">
                                         <span id="quantitySelectError"></span>
                                     </div>
